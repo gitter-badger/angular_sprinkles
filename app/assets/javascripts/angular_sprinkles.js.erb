@@ -1,0 +1,18 @@
+//= require angular
+
+window.sprinkles = angular.module('<%= AngularSprinkles::APP_NAME %>', []);
+
+window.onload = function () {
+  var angular = window.angular,
+    app = angular.module('<%= AngularSprinkles::APP_NAME %>'),
+    doc = document.documentElement,
+    ctrlName = (doc.attributes['ng-controller'] || doc.attributes['data-ng-controller']) || 'Ctrl';
+
+  ctrlName = ctrlName.split(' as ')[0];
+
+  <%= AngularSprinkles::CONTROLLER_FN %> = <%= AngularSprinkles::CONTROLLER_FN %> || function(){};
+  app.controller(ctrlName, <%= AngularSprinkles::CONTROLLER_FN %>);
+  doc.setAttribute('data-ng-controller', ctrlName + ' as <%= AngularSprinkles::CONTROLLER_NAME %>');
+
+  angular.bootstrap(doc, [app.name]);
+};

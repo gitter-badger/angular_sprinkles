@@ -11,40 +11,33 @@ module AngularSprinkles
       include Mixins::Initializable
 
       def bind(*input)
-        input = input.flatten
+        input = input.flatten.compact
+
+        raise ArgumentError if input.empty?
 
         yield_to_sprinkles(AngularSprinkles::CONSTRUCTOR_DEFINITION) unless app_initialized?
 
-        case input.count
-        when 0
-          raise ArgumentError
-        when 1
-          AngularSprinkles::Data::Bind.new(input.first)
-        else
-          first = input.shift
-          last = input.pop
+        build_chain(input).
+          select(&method(:is_uninitialized?)).
+          map(&method(:convert_to_empty_js_object_string)).
+          tap(&method(:yield_if_any))
 
-          chain = input.inject([first]) do |arr, var|
-            arr.push("#{arr.last}.#{var}")
-          end
-
-          chain.
-            select(&method(:is_uninitialized?)).
-            map(&method(:convert_to_empty_js_object_string)).
-            tap(&method(:yield_if_any))
-
-          AngularSprinkles::Data::Bind.new(chain.last, last)
-        end
+        AngularSprinkles::Data::Bind.new(*input)
       end
 
       private
+
+      def build_chain(input)
+        # [:a, :b, :c, :d] => [[:a], [:a, :b], [:a, :b, :c]]
+        (1...input.count).inject([]) { |acc,i| acc << input.first(i) }
+      end
 
       def is_uninitialized?(var)
         !var_initialized?(var)
       end
 
       def convert_to_empty_js_object_string(var)
-        or_equals_js(to_ctrl_prototype_variable(var), {})
+        set_prototype_variable(var.join('.'), {})
       end
 
       def yield_if_any(chain)

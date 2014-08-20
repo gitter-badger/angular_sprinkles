@@ -6,7 +6,8 @@ module AngularSprinkles
       end
 
       def var_initialized?(variable)
-        initialized_variables[variable.to_s] or (initialized_variables[variable.to_s] = true) && false
+        variable = [variable].flatten
+        initialized_variables[variable] or (initialized_variables[variable] = true) && false
       end
 
       private

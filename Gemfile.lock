@@ -31,7 +31,11 @@ GEM
     angularjs-rails (1.2.21)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
-    coderay (1.1.0)
+    byebug (3.2.0)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+    columnize (0.8.9)
+    debugger-linecache (1.2.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
@@ -66,7 +70,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
     minitest (5.4.0)
@@ -82,10 +85,6 @@ GEM
       multi_xml (~> 0.5)
       rack (~> 1.2)
     polyglot (0.3.5)
-    pry (0.10.1)
-      coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -124,7 +123,6 @@ GEM
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
-    slop (3.6.0)
     sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -150,8 +148,8 @@ DEPENDENCIES
   actionview
   angularjs-rails
   bundler
+  byebug
   jeweler
-  pry
   rails
   rdoc
   rspec

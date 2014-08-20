@@ -6,7 +6,7 @@ module AngularSprinkles
       include Mixins::JsTransformable
 
       def initialize(*strs)
-        @strs = strs
+        @strs = strs.flatten
       end
 
       def to_json

@@ -9,7 +9,7 @@ describe AngularSprinkles::Controller do
     end
 
     def index
-      bindable(@params)
+      assignable(@params)
     end
   end
 

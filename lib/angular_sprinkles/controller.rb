@@ -6,7 +6,7 @@ module AngularSprinkles
     include AngularSprinkles::Mixins::JsTransformable
     include AngularSprinkles::Mixins::Initializable
 
-    def bindable(hash)
+    def assignable(hash)
       raise TypeError unless hash.is_a?(Hash)
       declare_js_controller_prototype unless app_initialized?
       preload_to_page(hash)

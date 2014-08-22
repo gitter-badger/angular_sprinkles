@@ -12,10 +12,15 @@ describe AngularSprinkles::Decorators::Bind do
   class StubContext
     def bind(*args)
     end
-  end
 
-  before do
-    StubContext.any_instance.stub(bind: true)
+    def var_initialized?(*args)
+    end
+
+    def set_prototype_variable(*args)
+    end
+
+    def content_for(*args)
+    end
   end
 
   let(:context) { StubContext.new }
@@ -37,13 +42,14 @@ describe AngularSprinkles::Decorators::Bind do
 
     context 'when more than one argument is passed' do
       it 'creates the necessary object binding' do
-        expect(context).to receive(:bind)
+        expect(context).to receive(:bind).with(key, nil)
         subject.bind
       end
 
-      # it 'creates additional bindings' do
-      #   subject.bind(attr)
-      # end
+      it 'creates additional bindings' do
+        expect(context).to receive(:bind).with(key, :some_attr)
+        subject.bind(:some_attr)
+      end
 
     end
   end

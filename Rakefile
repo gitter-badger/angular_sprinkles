@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "angular_sprinkles"
   gem.homepage = "http://github.com/BrewhouseTeam/angular_sprinkles"
   gem.license = "MIT"
-  gem.summary = %Q{Add few sprinkles of AngularJS to your Rails App}
-  gem.description = %Q{Add few sprinkles of AngularJS to your Rails App}
+  gem.summary = %Q{Add just a few sprinkles of AngularJS to your Rails App}
+  gem.description = %Q{Add just a few sprinkles of AngularJS to your Rails App}
   gem.email = "gabe@brewhouse.io"
   gem.authors = ["Gabe Scholz"]
   # dependencies defined in Gemfile

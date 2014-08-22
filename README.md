@@ -1,7 +1,7 @@
 # Angular Sprinkles
 
-Sprinkles is a Ruby on Rails gem for developers who want to use Angular's two most powerful features, two-way data binding and
-custom directives, without all of the regular setup required for a typical Angular-based application.
+Sprinkles is a Ruby on Rails gem for developers who want to use Angular's two most powerful features - two-way data binding and
+custom directives - without all of the regular setup required for a typical Angular-based application.
 
 Sprinkles injects just enough JavaScript onto your page to make you dangerous. It is intended to be used by developers who just
 want a sprinkle of Angular instead of a full-blown application.

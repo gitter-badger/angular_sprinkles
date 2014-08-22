@@ -170,7 +170,7 @@ These can then be called with the `bindFunc` helper
 ```erb
 <%=# some view %>
 
-<%= bindFunc(:alertMe, @user.bind(:first_name));
+<button ng-click="<%= bindFunc(:alertMe, @user.bind(:first_name)) %>">Click Me!</button>;
 ```
 
 

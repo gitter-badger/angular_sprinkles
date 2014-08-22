@@ -91,6 +91,20 @@ Last Name: <input type="text" ng-model="<%= @user.bind(:last_name) %>" />
 
 We've got two-way data binding of persisted data without writing a single line of javascript!
 
+## Binding Collections
+
+You can bind collections with the `bindable_collection` helper
+
+```ruby
+class UserController < ApplicationController
+  include AngularSprinkles::Controller
+
+  def show
+    @users = bindable_collection(User.all)
+  end
+end
+```
+
 ## Custom Directives
 
 Sprinkles also comes packaged with a helper for instantiating custom directives.

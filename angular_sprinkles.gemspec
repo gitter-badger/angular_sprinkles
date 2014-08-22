@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.authors = ["Gabe Scholz"]
   s.date = "2014-08-22"
-  s.description = "Add few sprinkles of AngularJS to your Rails App"
+  s.description = "Add just a few sprinkles of AngularJS to your Rails App"
   s.email = "gabe@brewhouse.io"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -53,7 +53,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/BrewhouseTeam/angular_sprinkles"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.4.1"
-  s.summary = "Add few sprinkles of AngularJS to your Rails App"
+  s.summary = "Add just a few sprinkles of AngularJS to your Rails App"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

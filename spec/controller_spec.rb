@@ -3,50 +3,72 @@ require 'spec_helper'
 describe AngularSprinkles::Controller do
   class StubController
     include AngularSprinkles::Controller
-
-    def initialize(params)
-      @params = params
-    end
-
-    def index
-      assignable(@params)
-    end
   end
 
-  let(:key) { 'key' }
-  let(:value) { 'value' }
-  let(:controller) { StubController.new(params) }
+  let(:controller) { StubController.new }
 
-  context 'when given a hash' do
-    context 'and it is not empty' do
-      let(:params) { { key => value } }
+  describe '#assignable' do
+    let(:key) { 'key' }
+    let(:value) { 'value' }
+    context 'when given a hash' do
+      context 'and it is not empty' do
+        let(:params) { { key => value } }
 
-      it 'preloads the input data' do
-        result = [
-          AngularSprinkles::CONSTRUCTOR_DEFINITION,
-          %{#{AngularSprinkles::CONTROLLER_FN}.prototype.#{key} = #{AngularSprinkles::CONTROLLER_FN}.prototype.#{key} || "#{value}"}
-        ]
+        it 'preloads the input data' do
+          result = [
+            AngularSprinkles::CONSTRUCTOR_DEFINITION,
+            %{#{AngularSprinkles::CONTROLLER_FN}.prototype.#{key} = #{AngularSprinkles::CONTROLLER_FN}.prototype.#{key} || "#{value}"}
+          ]
 
-        expect(controller.index).to eq(result)
+          expect(controller.assignable(params)).to eq(result)
+        end
+      end
+
+      context 'and it is an empty hash' do
+        let(:params) { {} }
+
+        it 'only returns the prototype definition' do
+          result = [AngularSprinkles::CONSTRUCTOR_DEFINITION]
+          expect(controller.assignable(params)).to eq(result)
+        end
       end
     end
 
-    context 'and it is an empty hash' do
-      let(:params) { {} }
+    context 'when given anything else' do
+      let(:params) { value }
 
-      it 'only returns the prototype definition' do
-        result = [AngularSprinkles::CONSTRUCTOR_DEFINITION]
-        expect(controller.index).to eq(result)
+      it 'raises an exception' do
+        expect { controller.assignable(params) }.to raise_error(TypeError)
       end
     end
   end
 
-  context 'when given anything else' do
-    let(:params) { value }
+  describe '#bindable' do
+    before do
+      expect(controller).to receive(:assignable)
+    end
 
-    it 'raises an exception' do
-      expect { controller.index }.to raise_error(TypeError)
+    it 'returns a decorated object that responds to #bind' do
+      object = controller.bindable(Object.new)
+
+      expect(object.respond_to?(:bind)).to eq(true)
+      expect(object.class).to eq(AngularSprinkles::Decorators::Bind)
     end
   end
 
+  describe '#bindable_collection' do
+    let(:times) { 5 }
+
+    before do
+      expect(controller).to receive(:assignable).exactly(times + 1).times
+    end
+
+    it 'returns a collection of objects that respond to #bind' do
+      collection = (1..times).map { Object.new }
+      objects = controller.bindable_collection(collection)
+
+      expect(objects.all? { |o| o.respond_to?(:bind) }).to eq(true)
+      expect(objects.all? { |o| o.class == AngularSprinkles::Decorators::Bind }).to eq(true)
+    end
+  end
 end

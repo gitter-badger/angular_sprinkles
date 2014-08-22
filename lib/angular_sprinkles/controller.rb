@@ -7,6 +7,11 @@ module AngularSprinkles
     include AngularSprinkles::Mixins::JsTransformable
     include AngularSprinkles::Mixins::Initializable
 
+    def bindable_collection(objects)
+      objects.map! { |object| bindable(object) }
+      bindable(objects)
+    end
+
     def bindable(object)
       klass = object.class
       key = "#{klass}_#{inc_sprinkles_counter(klass)}"

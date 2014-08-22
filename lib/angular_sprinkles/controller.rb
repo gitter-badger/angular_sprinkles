@@ -8,6 +8,7 @@ module AngularSprinkles
     include AngularSprinkles::Mixins::Initializable
 
     def bindable_collection(objects)
+      objects = objects.to_a if objects.is_a?(ActiveRecord::Relation)
       objects.map! { |object| bindable(object) }
       bindable(objects)
     end

@@ -74,6 +74,7 @@ class UserController < ApplicationController
   def show
     @user = bindable(User.find(params[:id]))
   end
+end
 ```
 
 Our user is now also able to use `bind`

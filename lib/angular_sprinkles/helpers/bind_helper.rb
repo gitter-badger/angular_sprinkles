@@ -25,6 +25,11 @@ module AngularSprinkles
         AngularSprinkles::Data::Bind.new(*input)
       end
 
+      def bindFunc(fn, *args)
+        raise ArgumentError unless (fn.is_a?(String) || fn.is_a?(Symbol))
+        "#{AngularSprinkles::CONTROLLER_NAME}.#{fn}(#{args.join(',')})"
+      end
+
       private
 
       def build_chain(input)

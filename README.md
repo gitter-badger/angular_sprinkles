@@ -153,6 +153,27 @@ sprinkles.directive('blink', function ($interval) {
 <input type="text" ng-model="<%= bind(:blink_text) %>" />
 ```
 
+## Custom Functions
+
+Custom functions can be added to your application with the `sprinkles.func` function
+
+```js
+// some js file
+
+sprinkles.func('alertMe', function (input) {
+  alert(input);
+});
+```
+
+These can then be called with the `bindFunc` helper
+
+```erb
+<%=# some view %>
+
+<%= bindFunc(:alertMe, @user.bind(:first_name));
+```
+
+
 ## Including additional modules
 
 Adding additional modules is just a matter of appending them to `sprinkles.requires`. This is already a feature of Angular and not Sprinkles

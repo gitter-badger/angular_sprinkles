@@ -1,9 +1,18 @@
 //= require angular
 
+(function (window, document, angular) {
+
+var fnQueue = [];
+
 window.sprinkles = angular.module('<%= AngularSprinkles::APP_NAME %>', []);
 
+window.sprinkles.func = function () {
+  var args = [].slice.call(arguments, 0);
+  fnQueue.push({name: args[0], fn: args[1]});
+};
+
 window.onload = function () {
-  var angular = window.angular,
+  var queue,
     app = angular.module('<%= AngularSprinkles::APP_NAME %>'),
     doc = document.documentElement,
     ctrlName = (doc.attributes['ng-controller'] || doc.attributes['data-ng-controller']) || 'Ctrl';
@@ -11,8 +20,16 @@ window.onload = function () {
   ctrlName = ctrlName.split(' as ')[0];
 
   <%= AngularSprinkles::CONTROLLER_FN %> = <%= AngularSprinkles::CONTROLLER_FN %> || function(){};
+
+  for (var i = 0; i < fnQueue.length; i++) {
+    queue = fnQueue[i];
+    <%= AngularSprinkles::CONTROLLER_FN %>.prototype[queue.name] = queue.fn;
+  }
+
   app.controller(ctrlName, <%= AngularSprinkles::CONTROLLER_FN %>);
   doc.setAttribute('data-ng-controller', ctrlName + ' as <%= AngularSprinkles::CONTROLLER_NAME %>');
 
   angular.bootstrap(doc, [app.name]);
 };
+
+}(window, document, window.angular));

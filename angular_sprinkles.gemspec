@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.authors = ["Gabe Scholz"]
   s.date = "2014-08-22"
-  s.description = ""
+  s.description = "Add few sprinkles of AngularJS to your Rails App"
   s.email = "gabe@brewhouse.io"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "angular_sprinkles.gemspec",
     "app/assets/javascripts/angular_sprinkles.js.erb",
     "lib/angular_sprinkles.rb",
     "lib/angular_sprinkles/controller.rb",

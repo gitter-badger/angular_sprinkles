@@ -99,17 +99,4 @@ describe AngularSprinkles::Helpers::BindHelper do
       end
     end
   end
-
-  describe '#bindFunc' do
-    let(:fn) { :brewhouse }
-    let(:input) { [5, 'software'] }
-
-    it 'returns a javascript function binding string' do
-      expect(stub.bindFunc(fn, *input)).to eq("#{AngularSprinkles::CONTROLLER_NAME}.#{fn}(#{input.join(',')})")
-    end
-
-    it 'raises with an input' do
-      expect { stub.bindFunc }.to raise_error(ArgumentError)
-    end
-  end
 end

@@ -16,7 +16,6 @@ describe AngularSprinkles::Controller do
 
         it 'preloads the input data' do
           result = [
-            AngularSprinkles::CONSTRUCTOR_DEFINITION,
             %{#{AngularSprinkles::CONTROLLER_FN}.prototype.#{key} = #{AngularSprinkles::CONTROLLER_FN}.prototype.#{key} || "#{value}"}
           ]
 
@@ -27,9 +26,8 @@ describe AngularSprinkles::Controller do
       context 'and it is an empty hash' do
         let(:params) { {} }
 
-        it 'only returns the prototype definition' do
-          result = [AngularSprinkles::CONSTRUCTOR_DEFINITION]
-          expect(controller.assignable(params)).to eq(result)
+        it 'returns nothing' do
+          expect(controller.assignable(params)).to eq([])
         end
       end
     end

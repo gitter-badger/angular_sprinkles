@@ -23,11 +23,6 @@ describe AngularSprinkles::Helpers::BindHelper do
         expect(stub.bind(var).to_json).
           to(eq("#{AngularSprinkles::CONTROLLER_NAME}.#{var}"))
       end
-
-      it 'only yields the constructor definition to the view' do
-        expect(stub).to receive(:yield_to_sprinkles).with(AngularSprinkles::CONSTRUCTOR_DEFINITION)
-        stub.bind(var)
-      end
     end
 
     context 'when 2 arguments' do
@@ -39,7 +34,6 @@ describe AngularSprinkles::Helpers::BindHelper do
       end
 
       it 'yields the contructor definition and the first variable to the function to prototype' do
-        expect(stub).to receive(:yield_to_sprinkles).with(AngularSprinkles::CONSTRUCTOR_DEFINITION)
         expect(stub).to receive(:yield_to_sprinkles).
           with("#{AngularSprinkles::CONTROLLER_FN}.prototype.#{vars.first} = #{AngularSprinkles::CONTROLLER_FN}.prototype.#{vars.first} || {};")
 
@@ -56,7 +50,6 @@ describe AngularSprinkles::Helpers::BindHelper do
       end
 
       it 'yields the constructor definition and the first variable to the function to prototype' do
-        expect(stub).to receive(:yield_to_sprinkles).with(AngularSprinkles::CONSTRUCTOR_DEFINITION)
         expect(stub).to receive(:yield_to_sprinkles).
           with(%{#{AngularSprinkles::CONTROLLER_FN}.prototype.#{vars.first} = #{AngularSprinkles::CONTROLLER_FN}.prototype.#{vars.first} || {};
 #{AngularSprinkles::CONTROLLER_FN}.prototype.#{vars.first(2).join('.')} = #{AngularSprinkles::CONTROLLER_FN}.prototype.#{vars.first(2).join('.')} || {};})
@@ -70,14 +63,14 @@ describe AngularSprinkles::Helpers::BindHelper do
 
       context 'and it is with the same variables' do
         it 'yields the constructor definition and the first variable to the function to prototype' do
-          expect(stub).to receive(:content_for).twice
+          expect(stub).to receive(:content_for).once
           5.times { stub.bind(*vars) }
         end
       end
 
       context 'and it is called with different sets of variables' do
         it 'yields the constructor definition, first variable, and a chain of the first two variables' do
-          expect(stub).to receive(:content_for).exactly(3).times
+          expect(stub).to receive(:content_for).exactly(2).times
 
           stub.bind(vars.first) # yields the constructor
           stub.bind(vars.first) # yields nothing
@@ -90,8 +83,6 @@ describe AngularSprinkles::Helpers::BindHelper do
 
     context 'when the constructor has already been yielded' do
       let(:var) { :brewhouse }
-
-      before { allow(stub).to receive(:app_initialized?).and_return(true) }
 
       it 'does not yield anything with only one argument' do
         expect(stub).not_to receive(:content_for)

@@ -23,16 +23,14 @@ module AngularSprinkles
 
     def assignable(hash)
       raise TypeError unless hash.is_a?(Hash)
-      declare_js_controller_prototype unless app_initialized?
       preload_to_page(hash)
     end
 
     def view_context
       @_sprinkles_view_context ||= super.tap do |view|
-        if sprinkles_content.any?
-          content = view.content_tag(:script, (sprinkles_content.join(";\n") + ';').html_safe)
-          view.content_for(:sprinkles, content)
-        end
+        sprinkles_content.unshift(AngularSprinkles::CONSTRUCTOR_DEFINITION)
+        content = view.content_tag(:script, (sprinkles_content.join(";\n") + ';').html_safe)
+        view.content_for(:sprinkles, content)
       end
     end
 
@@ -45,10 +43,6 @@ module AngularSprinkles
     def inc_sprinkles_counter(klass)
       sprinkles_counter[klass] ||= 0
       sprinkles_counter[klass] += 1
-    end
-
-    def declare_js_controller_prototype
-      sprinkles_content.push(AngularSprinkles::CONSTRUCTOR_DEFINITION)
     end
 
     def preload_to_page(hash)

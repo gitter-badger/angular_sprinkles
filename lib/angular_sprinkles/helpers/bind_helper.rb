@@ -12,10 +12,7 @@ module AngularSprinkles
 
       def bind(*input)
         input = input.flatten.compact
-
         raise ArgumentError if input.empty?
-
-        yield_to_sprinkles(AngularSprinkles::CONSTRUCTOR_DEFINITION) unless app_initialized?
 
         build_chain(input).
           select(&method(:is_uninitialized?)).

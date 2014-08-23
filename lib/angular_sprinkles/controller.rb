@@ -11,19 +11,34 @@ module AngularSprinkles
     def bindable(object)
       object = object.to_a if object.is_a?(::ActiveRecord::Relation)
       key = object_key(object)
-      assignable(key => object)
+
+      if object.is_a?(Array)
+        object.map!(&method(:bindable))
+        constructor_keys = object.map { |o| "this.#{o.bind_key}" }
+        sprinkles_constructor.push("this.#{key} = [#{constructor_keys.join(',')}]")
+      else
+        add_to_constructor(key => object)
+      end
+
+
       AngularSprinkles::Decorators::Bind.new(object, key, method(:view_context))
     end
 
-    def assignable(hash)
+    def add_to_constructor(hash)
       raise TypeError unless hash.is_a?(Hash)
-      preload_to_page(hash)
+      hash.each do |var_name, value|
+        if !var_initialized?(var_name)
+          str = set_constructor_variable(var_name, value)
+          sprinkles_constructor.push(str)
+        end
+      end
+      sprinkles_constructor
     end
 
     def view_context
       @_sprinkles_view_context ||= super.tap do |view|
-        sprinkles_content.unshift(AngularSprinkles::CONSTRUCTOR_DEFINITION)
-        content = view.content_tag(:script, (sprinkles_content.join(";\n") + ';').html_safe)
+        constructor = "#{CONTROLLER_FN} = #{CONTROLLER_FN} || function(){\n#{sprinkles_constructor.join(";\n") + ";"}\n}"
+        content = view.content_tag(:script, constructor.html_safe)
         view.content_for(:sprinkles, content)
       end
     end
@@ -44,18 +59,12 @@ module AngularSprinkles
       sprinkles_counter[klass] += 1
     end
 
-    def preload_to_page(hash)
-      hash.each do |var_name, value|
-        if !var_initialized?(var_name)
-          str = set_prototype_variable(var_name, value)
-          sprinkles_content.push(str)
-        end
-      end
-      sprinkles_content
+    def sprinkles_prototype
+      @_sprinkles_prototype ||= []
     end
 
-    def sprinkles_content
-      @_sprinkles_content ||= []
+    def sprinkles_constructor
+      @_sprinkles_constructor ||= []
     end
   end
 end

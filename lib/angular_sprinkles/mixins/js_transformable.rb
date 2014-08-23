@@ -9,6 +9,10 @@ module AngularSprinkles
         or_equals_js(to_ctrl_prototype_variable(key), value)
       end
 
+      def set_constructor_variable(key, value)
+        "this.#{key} = #{value.to_json}"
+      end
+
       private
 
       def or_equals_js(key, value)

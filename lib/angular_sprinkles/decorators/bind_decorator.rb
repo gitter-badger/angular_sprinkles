@@ -10,6 +10,10 @@ module AngularSprinkles
         @_sprinkles_bind_wrapper.bind(_method)
       end
 
+      def bind_key
+        @_sprinkles_bind_wrapper.key
+      end
+
       private
 
       class Wrapper

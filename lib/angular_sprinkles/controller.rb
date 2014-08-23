@@ -8,17 +8,6 @@ module AngularSprinkles
     include AngularSprinkles::Mixins::JsTransformable
     include AngularSprinkles::Mixins::Initializable
 
-    def bindable_collection(objects)
-      objects = objects.to_a if objects.is_a?(::ActiveRecord::Relation)
-
-      objects.map! do |object|
-        key = object_key(object)
-        AngularSprinkles::Decorators::Bind.new(object, key, method(:view_context))
-      end
-
-      bindable(objects)
-    end
-
     def bindable(object)
       object = object.to_a if object.is_a?(::ActiveRecord::Relation)
       key = object_key(object)

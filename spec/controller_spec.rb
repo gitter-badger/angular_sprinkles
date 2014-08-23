@@ -54,19 +54,20 @@ describe AngularSprinkles::Controller do
     end
   end
 
-  describe '#bindable_collection' do
-    let(:times) { 5 }
+  # removed for now
+  # describe '#bindable_collection' do
+  #   let(:times) { 5 }
 
-    before do
-      expect(controller).to receive(:assignable).once
-    end
+  #   before do
+  #     expect(controller).to receive(:assignable).once
+  #   end
 
-    it 'returns a collection of objects that respond to #bind' do
-      collection = (1..times).map { Object.new }
-      objects = controller.bindable_collection(collection)
+  #   it 'returns a collection of objects that respond to #bind' do
+  #     collection = (1..times).map { Object.new }
+  #     objects = controller.bindable_collection(collection)
 
-      expect(objects.all? { |o| o.respond_to?(:bind) }).to eq(true)
-      expect(objects.all? { |o| o.class == AngularSprinkles::Decorators::Bind }).to eq(true)
-    end
-  end
+  #     expect(objects.all? { |o| o.respond_to?(:bind) }).to eq(true)
+  #     expect(objects.all? { |o| o.class == AngularSprinkles::Decorators::Bind }).to eq(true)
+  #   end
+  # end
 end

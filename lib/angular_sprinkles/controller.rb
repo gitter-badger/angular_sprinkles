@@ -1,3 +1,4 @@
+require 'active_record'
 require 'angular_sprinkles/mixins/js_transformable'
 require 'angular_sprinkles/mixins/initializable'
 require 'angular_sprinkles/decorators/bind_decorator'
@@ -8,7 +9,7 @@ module AngularSprinkles
     include AngularSprinkles::Mixins::Initializable
 
     def bindable_collection(objects)
-      objects = objects.to_a if objects.is_a?(ActiveRecord::Relation)
+      objects = objects.to_a if objects.is_a?(::ActiveRecord::Relation)
       objects.map! { |object| bindable(object) }
       bindable(objects)
     end

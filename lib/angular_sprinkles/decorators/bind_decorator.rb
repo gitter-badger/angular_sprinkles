@@ -16,10 +16,10 @@ module AngularSprinkles
         # create BindWrapper so that methods and variables don't pollute
         # the object being wrapped by Bind
 
-        attr_reader :_object, :key, :context_proc
+        attr_reader :object, :key, :context_proc
 
         def initialize(object, key, context_proc)
-          @_object, @key, @context_proc = object, key, context_proc
+          @object, @key, @context_proc = object, key, context_proc
         end
 
         def bind(_method = nil)
@@ -38,7 +38,7 @@ module AngularSprinkles
 
         def set_prototype_variable_and_yield(_method)
           var = [key, _method].join('.')
-          str = context.set_prototype_variable(var, _object.send(_method))
+          str = context.set_prototype_variable(var, object.send(_method))
           yield_to_sprinkles("#{str};")
         end
 

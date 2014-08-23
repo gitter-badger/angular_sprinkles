@@ -2,7 +2,7 @@ module AngularSprinkles
   module Mixins
     module Initializable
       def var_initialized?(variable)
-        variable = [variable].flatten
+        variable = [variable].flatten.compact
         initialized_variables[variable] or (initialized_variables[variable] = true) && false
       end
 

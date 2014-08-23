@@ -10,13 +10,18 @@ module AngularSprinkles
 
     def bindable_collection(objects)
       objects = objects.to_a if objects.is_a?(::ActiveRecord::Relation)
-      objects.map! { |object| bindable(object) }
+
+      objects.map! do |object|
+        key = object_key(object)
+        AngularSprinkles::Decorators::Bind.new(object, key, method(:view_context))
+      end
+
       bindable(objects)
     end
 
     def bindable(object)
-      klass = object.class
-      key = "#{klass}_#{inc_sprinkles_counter(klass)}"
+      object = object.to_a if object.is_a?(::ActiveRecord::Relation)
+      key = object_key(object)
       assignable(key => object)
       AngularSprinkles::Decorators::Bind.new(object, key, method(:view_context))
     end
@@ -35,6 +40,11 @@ module AngularSprinkles
     end
 
     private
+
+    def object_key(object)
+      klass = object.class
+      "#{klass}_#{inc_sprinkles_counter(klass)}"
+    end
 
     def sprinkles_counter
       @_sprinkles_counter ||= {}

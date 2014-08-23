@@ -58,7 +58,7 @@ describe AngularSprinkles::Controller do
     let(:times) { 5 }
 
     before do
-      expect(controller).to receive(:assignable).exactly(times + 1).times
+      expect(controller).to receive(:assignable).once
     end
 
     it 'returns a collection of objects that respond to #bind' do

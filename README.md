@@ -155,24 +155,25 @@ sprinkles.directive('blink', function ($interval) {
 <input type="text" ng-model="<%= bind(:blink_text) %>" />
 ```
 
-## Custom Functions
+## Calling custom functions in the view
 
-Custom functions can be added to your application with the `sprinkles.func` function
+Angular frequently makes use of calling functions in the view for directives such as `ng-click`. You can bind custom functions to the view by first writing a service and then calling `bind_service`
 
 ```js
 // some js file
 
-sprinkles.func('alertMe', function (input) {
-  alert(input);
+sprinkles.service('alert_it', function (someInjectedDependency) {
+  return function (input) {
+    var modifiedInput = someInjectedDependency(input);
+    alert(modifiedInput);
+  };
 });
 ```
-
-These can then be called with the `bindFunc` helper
 
 ```erb
 <%=# some view %>
 
-<button ng-click="<%= bindFunc(:alertMe, @user.bind(:first_name)) %>">Click Me!</button>;
+<button ng-click="<%= bind_service(:alert_it, @user.bind(:first_name)) %>">Click Me!</button>;
 ```
 
 

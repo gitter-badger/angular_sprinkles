@@ -3,6 +3,7 @@ module AngularSprinkles
   APP_NAME = "#{PREFIX}App"
   CONTROLLER_NAME = "#{PREFIX}Ctrl"
   CONTROLLER_FN = "window.#{CONTROLLER_NAME}Fn"
+  SERVICE_QUEUE = "#{CONTROLLER_FN}.serviceQueue"
 end
 
 require 'angular_sprinkles/helpers'

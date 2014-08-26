@@ -7,6 +7,7 @@ module AngularSprinkles
 end
 
 require 'angular_sprinkles/helpers'
+require 'angular_sprinkles/variable_cache'
 require 'angular_sprinkles/decorators'
 require 'angular_sprinkles/controller'
 require 'angular_sprinkles/engine'

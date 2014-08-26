@@ -10,10 +10,9 @@ describe AngularSprinkles::Decorators::Bind do
   end
 
   class StubContext
-    def bind(*args)
-    end
+    include AngularSprinkles::Mixins::Cache
 
-    def var_initialized?(*args)
+    def bind(*args)
     end
 
     def set_prototype_variable(*args)

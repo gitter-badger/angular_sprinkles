@@ -3,6 +3,7 @@ require 'spec_helper'
 describe AngularSprinkles::Helpers::BindHelper do
   class StubClass
     include AngularSprinkles::Helpers::BindHelper
+    include AngularSprinkles::Mixins::Cache
   end
 
   let(:stub) { StubClass.new }

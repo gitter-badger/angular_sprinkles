@@ -1,12 +1,12 @@
 require 'active_record'
 require 'angular_sprinkles/mixins/js_transformable'
-require 'angular_sprinkles/mixins/initializable'
+require 'angular_sprinkles/mixins/cache'
 require 'angular_sprinkles/decorators/bind_decorator'
 
 module AngularSprinkles
   module Controller
     include AngularSprinkles::Mixins::JsTransformable
-    include AngularSprinkles::Mixins::Initializable
+    include AngularSprinkles::Mixins::Cache
 
     def bindable(object)
       object = object.to_a if object.is_a?(::ActiveRecord::Relation)
@@ -27,8 +27,8 @@ module AngularSprinkles
     def add_to_constructor(hash)
       raise TypeError unless hash.is_a?(Hash)
       hash.each do |var_name, value|
-        if !var_initialized?(var_name)
-          str = set_constructor_variable(var_name, value)
+        _sprinkles_cache.yield_if_new(var_name) do |var|
+          str = set_constructor_variable(var, value)
           sprinkles_constructor.push(str)
         end
       end

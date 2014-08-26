@@ -1,6 +1,6 @@
 require 'action_view/helpers'
 require 'angular_sprinkles/mixins/js_transformable'
-require 'angular_sprinkles/mixins/initializable'
+require 'angular_sprinkles/mixins/cache'
 require 'angular_sprinkles/data/bind'
 
 module AngularSprinkles
@@ -8,7 +8,7 @@ module AngularSprinkles
     module BindHelper
       include ::ActionView::Helpers
       include Mixins::JsTransformable
-      include Mixins::Initializable
+      include Mixins::Cache
 
       def bind(*input)
         input = input.flatten.compact
@@ -29,8 +29,12 @@ module AngularSprinkles
         (1...input.count).inject([]) { |acc,i| acc << input.first(i) }
       end
 
+      def cache
+        self._sprinkles_cache
+      end
+
       def is_uninitialized?(var)
-        !var_initialized?(var)
+        cache.yield_if_new(var)
       end
 
       def convert_to_empty_js_object_string(var)

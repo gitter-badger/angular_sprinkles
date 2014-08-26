@@ -1,26 +1,26 @@
 require 'action_view/helpers'
-require 'angular_sprinkles/mixins/initializable'
+require 'angular_sprinkles/mixins/cache'
 
 module AngularSprinkles
   module Helpers
     module BindServiceHelper
       include ::ActionView::Helpers
-      include Mixins::Initializable
+      include Mixins::Cache
 
       def bind_service(service, *input)
         raise TypeError unless service.is_a?(Symbol) || service.is_a?(String)
 
-        yield_to_sprinkles("#{SERVICE_QUEUE}.push('#{service}')") unless var_initialized?(service)
+        cache.yield_if_new(service) do |s|
+          content_for(:sprinkles, content_tag(:script, "#{SERVICE_QUEUE}.push('#{s}')".html_safe))
+        end
 
         "#{CONTROLLER_NAME}.#{service}(#{input.join(',')})".html_safe
       end
 
       private
 
-      def yield_to_sprinkles(content)
-        content_for(:sprinkles) do
-          content_tag(:script, content.html_safe)
-        end
+      def cache
+        self._sprinkles_cache
       end
     end
   end

@@ -27,8 +27,8 @@ module AngularSprinkles
         end
 
         def bind(_method = nil)
-          if _method.present? && !context.var_initialized?([key, _method])
-            set_prototype_variable_and_yield(_method)
+          cache.yield_if_new([key, _method]) do |var|
+            set_prototype_variable_and_yield(_method) unless _method.nil?
           end
 
           context.bind(key, _method)
@@ -38,6 +38,10 @@ module AngularSprinkles
 
         def context
           context_proc.call
+        end
+
+        def cache
+          context._sprinkles_cache
         end
 
         def set_prototype_variable_and_yield(_method)

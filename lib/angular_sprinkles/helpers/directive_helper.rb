@@ -1,14 +1,14 @@
 module AngularSprinkles
   module Helpers
     module DirectiveHelper
-      def directive(name, input = {}, options = {}, &block)
+      def directive(directive_name, options = {}, &block)
         content = capture(&block) if block_given?
 
-        attributes = Directive::Attributes.new([
-          Directive::Name.new(name),
-          Directive::Input.new(input),
-          Directive::Options.new(options.except(:tag))
-        ], { tag: options[:tag], content: content })
+        name = Directive::Name.new(directive_name)
+        input = Directive::Input.new(options.except(:html))
+        html = Directive::Html.new(options[:html])
+
+        attributes = Directive::Attributes.new([name, input, html], tag: html.tag, content: content)
 
         content_tag(*attributes.to_content_tag)
       end

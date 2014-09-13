@@ -9,7 +9,6 @@ group :development do
   gem "capybara"
   gem "selenium-webdriver"
   gem "launchy"
-  gem "byebug"
   gem "simplecov"
   gem "jeweler"
 end

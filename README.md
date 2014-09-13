@@ -56,6 +56,8 @@ sprinkles.service('alertMe', function () {
 <button ng-click="<%= service(:alert_me, "world") %>">Click me!</button>
 ```
 
+Also see the [demo application](https://github.com/BrewhouseTeam/angular_sprinkles_example) for more examples.
+
 ## Setup
 
 Add `angular_sprinkles` to your `Gemfile`.

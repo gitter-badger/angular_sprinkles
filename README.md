@@ -1,31 +1,69 @@
 # Angular Sprinkles
 
 [![Gem Version](https://badge.fury.io/rb/angular_sprinkles.svg)](http://badge.fury.io/rb/angular_sprinkles)
-![Circle CI](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles.png?style=badge)
+[![Circle CI](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles.png?style=badge)](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles)
 
-__WARNING: This gem is unstable and rapidly changing at the moment. README.md may not reflect the actual API.__
+Angular Sprinkles is a gem for writing Rails-flavored AngularJS.
 
-Sprinkles is a Ruby on Rails gem for developers who want to use Angular's two most powerful features - two-way data binding and
-custom directives - without all of the regular setup required for a typical Angular-based application.
+- __No frontend setup required:__ By just requiring it in your project, sprinkles dynamically generates an Angular application around your Rails templates. It's never been easier to start developing with Angular and Rails.
+- __Rails as it was intended to be written:__ Angular's two-way data binding, directives, and function calls are all done in the view via helper methods, giving you just a sprinkle of JavaScript.
+- __Forget about the SPA:__ If you're not using Rails an API, trying to build an SPA on top of it is a huge pain. Sprinkles allows you to continue to write Rails applications as you always have without all of the nasty jQuery spaghetti.
 
-Sprinkles injects just enough JavaScript onto your page to make you dangerous. It is intended to be used by developers who just
-want a sprinkle of Angular instead of a full-blown application.
+## Examples
+
+Two-way binding works right out of the box with Sprinkles. Just wrap your objects with the `bindable` helper.
+
+```ruby
+class UserController < ApplicationController
+  def show
+    # bindable gives your objects the bind method
+    @user = bindable(User.find(params[:id]))
+  end
+end
+```
+
+```erb
+{{ <%= @user.bind(:name) %> }}
+<input type="text" ng-model="<%= @user.bind(:name) %>" />
+```
+
+Use custom directives with the `directive` helper.
+
+```erb
+<script>
+sprinkles.directive('blink', function () {
+  // re-implement the blink tag
+});
+</script>
+
+<%= directive(:blink) %>
+```
+
+Call services directly from the view with the `service` helper.
+
+```erb
+<script>
+sprinkles.service('alertMe', function () {
+  return function (input) {
+    alert('Hello, ' + input);
+  };
+});
+</script>
+
+<button ng-click="<%= service(:alert_me, "Brewhouse") %>">Click me!</button>
+```
 
 ## Setup
 
-Add Angular and Sprinkles to your `Gemfile`
+Add `angular_sprinkles` to your `Gemfile`.
 
 ```ruby
-# Gemfile
-
-gem 'angularjs-rails'
 gem 'angular_sprinkles'
 ```
 
-Add a yield method for your sprinkles at the bottom of your body tag
+Add `yield :sprinkles` to the bottom of your body tag.
 
 ```erb
-<%=# app/views/layouts/application.html.erb %>
 <body>
 
 <%= yield %>
@@ -34,112 +72,11 @@ Add a yield method for your sprinkles at the bottom of your body tag
 </body>
 ```
 
-Include Angular and Sprinkles into your `application.js`
+Include and `angular_sprinkles` into your `application.js`.
 
 ```js
-// app/assets/javascripts/application.js
-
-//= require angular
 //= require angular_sprinkles
 //= require_tree .
-```
-
-That's it! You are now read to begin using Sprinkles in your application. There is no need to create an application module or
-controller. Sprinkles dynamically generates this for you.
-
-## Data binding
-
-Two-way data binding with Sprinkles is easy. We can use the `bindable` view helper to decorate our record with the bind method
-
-```ruby
-class UserController < ApplicationController
-  def show
-    @user = bindable(User.find(params[:id]))
-  end
-end
-```
-
-Our user is now also able to use `bind`
-
-```erb
-<%=# some view %>
-
-Bind the entire object: <span ng-bind="<%= @user.bind %>"></span>
-
-Full Name: <span ng-bind="<%= @user.bind(:first_name) %>  + ' ' + <%= @user.bind(:last_name) %>"></span>
-First Name: <input type="text" ng-model="<%= @user.bind(:first_name) %>" />
-Last Name: <input type="text" ng-model="<%= @user.bind(:last_name) %>" />
-```
-
-We've got two-way data binding of persisted data without writing a single line of javascript!
-
-## Custom Directives
-
-Sprinkles also comes packaged with a helper for instantiating custom directives.
-
-In order to write custom directives, you must add them to the sprinkles module which is attached to the global `sprinkles` variable.
-Let's create an element that blinks some text.
-
-```js
-// some js file
-
-sprinkles.directive('blink', function ($interval) {
-  return {
-    restrict: 'A',
-    scope: {
-      interval: '=',
-      text: '='
-    },
-    template: '<span>{{text}}</span>',
-    link: function (scope, el) {
-      var opacity = 1;
-
-      scope.text = scope.text || 'Hello World!';
-      scope.interval = scope.interval || 1000;
-
-      $interval(function () {
-        el.css({ opacity: opacity });
-        opacity = -opacity + 1;
-      }, scope.interval);
-    }
-  }
-});
-```
-
-```erb
-<%=# some view %>
-
-<%= directive(:blink, { interval: 250, text: 'Blink Me!' }) %>
-```
-
-"Blink Me!" will now flash on the screen. We can also combine this directive with the `bind` helper so that we can change the text on the fly
-
-```erb
-<%=# some view %>
-
-<%= directive(:blink, { interval: 250, text: bind(:blink_text) }) %>
-<input type="text" ng-model="<%= bind(:blink_text) %>" />
-```
-
-## Calling custom functions in the view
-
-Angular frequently makes use of calling functions in the view for directives such as `ng-click`. You can bind custom functions to the view by first writing a service and then calling `service`
-
-```js
-// some js file
-
-sprinkles.service('alert_it', function (someInjectedDependency) {
-  return function (input) {
-    var modifiedInput = someInjectedDependency(input);
-    alert(modifiedInput);
-  };
-});
-```
-
-```erb
-<%=# some view %>
-
-<button ng-click="<%= service(:alert_it, @user.bind(:first_name)) %>">Click Me!</button>;
 ```
 
 ## Copyright

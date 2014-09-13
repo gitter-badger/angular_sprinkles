@@ -37,7 +37,9 @@ sprinkles.directive('blink', function () {
 });
 </script>
 
-<%= directive(:blink) %>
+<%= directive(:blink) do %>
+  Hello, world
+<% end %>
 ```
 
 Call services directly from the view with the `service` helper.
@@ -51,7 +53,7 @@ sprinkles.service('alertMe', function () {
 });
 </script>
 
-<button ng-click="<%= service(:alert_me, "Brewhouse") %>">Click me!</button>
+<button ng-click="<%= service(:alert_me, "world") %>">Click me!</button>
 ```
 
 ## Setup

@@ -63,6 +63,7 @@ Also see the [demo application](https://github.com/BrewhouseTeam/angular_sprinkl
 Add `angular_sprinkles` to your `Gemfile`.
 
 ```ruby
+gem 'angularjs-rails'
 gem 'angular_sprinkles'
 ```
 

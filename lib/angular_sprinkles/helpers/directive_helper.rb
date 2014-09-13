@@ -6,8 +6,8 @@ module AngularSprinkles
 
         attributes = Directive::Attributes.new([
           Directive::Name.new(name),
-          Directive::Input::new(input),
-          Directive::Options::new(options.except(:tag))
+          Directive::Input.new(input),
+          Directive::Options.new(options.except(:tag))
         ], { tag: options[:tag], content: content })
 
         content_tag(*attributes.to_content_tag)

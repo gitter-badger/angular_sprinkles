@@ -31,3 +31,9 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["Gabe Scholz"]
 end
 Jeweler::RubygemsDotOrgTasks.new
+
+desc "Run migrations for dummy app"
+task :migrate do
+  rakefile = File.expand_path('../spec/dummy/Rakefile', __FILE__)
+  sh("rake -f #{rakefile} db:create db:migrate")
+end

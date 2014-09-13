@@ -25,7 +25,7 @@ module AngularSprinkles
     ConstructorWrapper = ->(string) do
       <<-BlockOfJavaScript
       #{CONTROLLER_FN} = #{CONTROLLER_FN} || function ($injector) {
-        #{string};
+        #{string}
 
         #{SERVICE_QUEUE}.forEach(function (service) {
           this[service] = $injector.get(service);

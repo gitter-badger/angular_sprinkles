@@ -40,7 +40,7 @@ module AngularSprinkles
       "this.#{key} = #{object.to_json};"
     end
 
-    RegisterService = -> (method) do
+    RegisterService = ->(method) do
       "#{SERVICE_QUEUE}.push('#{method}')"
     end
 

@@ -9,6 +9,6 @@ group :development do
   gem "capybara"
   gem "selenium-webdriver"
   gem "launchy"
-  gem "simplecov"
   gem "jeweler"
+  gem "coveralls", require: false
 end

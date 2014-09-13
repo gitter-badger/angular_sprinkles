@@ -1,6 +1,6 @@
-if ENV["COVERAGE"] == "true"
-  require "simplecov"
-  SimpleCov.start do
+if ENV["COVERALLS_REPO_TOKEN"]
+  require "coveralls"
+  Coveralls.wear! do
     add_filter 'dummy'
     add_filter 'rails_helper.rb'
     add_filter 'spec_helper.rb'

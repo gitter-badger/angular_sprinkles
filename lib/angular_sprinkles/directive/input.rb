@@ -1,7 +1,7 @@
 module AngularSprinkles
   module Directive
     class Input
-      def initialize(args)
+      def initialize(args = {})
         @args = args.symbolize_keys
       end
 

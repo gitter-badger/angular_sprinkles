@@ -16,6 +16,12 @@ module AngularSprinkles
           ctrlName = 'Ctrl';
         #{CONTROLLER_FN} = #{CONTROLLER_FN} || function(){};
         app.controller(ctrlName, #{CONTROLLER_FN});
+        app.config(['$httpProvider', function ($httpProvider) {
+          var csrfToken = document.querySelector('meta[name=csrf-token]');
+          if (csrfToken) {
+            $httpProvider.defaults.headers.common['X-CSRF-Token'] = csrfToken.content;
+          }
+        }]);
         doc.setAttribute('data-ng-controller', ctrlName + ' as #{CONTROLLER_NAME}');
         angular.bootstrap(doc, [app.name]);
       };
@@ -26,7 +32,6 @@ module AngularSprinkles
       <<-BlockOfJavaScript
       #{CONTROLLER_FN} = #{CONTROLLER_FN} || function ($injector) {
         #{string}
-
         #{SERVICE_QUEUE}.forEach(function (service) {
           this[service] = $injector.get(service);
         }.bind(this));

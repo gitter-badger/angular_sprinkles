@@ -1,6 +1,7 @@
 # Angular Sprinkles
 
 [![Gem Version](https://badge.fury.io/rb/angular_sprinkles.svg)](http://badge.fury.io/rb/angular_sprinkles)
+![Circle CI](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles.png?style=badge)
 
 __WARNING: This gem is unstable and rapidly changing at the moment. README.md may not reflect the actual API.__
 

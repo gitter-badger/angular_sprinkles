@@ -4,11 +4,14 @@ gem "rails"
 gem "angularjs-rails"
 
 group :development do
-  gem "sqlite3"
+  gem "jeweler"
+end
+
+group :test do
+  gem "coveralls", require: false
   gem "rspec-rails"
   gem "capybara"
   gem "selenium-webdriver"
   gem "launchy"
-  gem "jeweler"
-  gem "coveralls", require: false
+  gem "sqlite3"
 end

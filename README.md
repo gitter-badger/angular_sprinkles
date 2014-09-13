@@ -1,5 +1,7 @@
 # Angular Sprinkles
 
+[![Gem Version](https://badge.fury.io/rb/angular_sprinkles.svg)](http://badge.fury.io/rb/angular_sprinkles)
+
 __WARNING: This gem is unstable and rapidly changing at the moment. README.md may not reflect the actual API.__
 
 Sprinkles is a Ruby on Rails gem for developers who want to use Angular's two most powerful features - two-way data binding and

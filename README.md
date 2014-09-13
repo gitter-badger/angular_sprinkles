@@ -2,6 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/angular_sprinkles.svg)](http://badge.fury.io/rb/angular_sprinkles)
 [![Circle CI](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles.png?style=badge)](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles)
+[![Coverage Status](https://coveralls.io/repos/BrewhouseTeam/angular_sprinkles/badge.png?branch=master)](https://coveralls.io/r/BrewhouseTeam/angular_sprinkles?branch=master)
 
 Angular Sprinkles is a gem for writing Rails-flavored AngularJS.
 

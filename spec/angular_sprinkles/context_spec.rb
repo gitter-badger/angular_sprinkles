@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe AngularSprinkles::Context do
-  let(:key_generator) { Object.new }
-  let(:constructor) { Object.new }
-  let(:constructor_collection) { Object.new }
-  let(:view_context) { Object.new }
+  let(:key_generator) { double }
+  let(:constructor) { double }
+  let(:constructor_collection) { double }
+  let(:view_context) { double }
 
   subject do
     described_class.new({

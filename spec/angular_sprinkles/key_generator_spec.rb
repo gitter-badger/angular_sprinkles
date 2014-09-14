@@ -1,13 +1,9 @@
 require 'spec_helper'
 
 describe AngularSprinkles::KeyGenerator do
-  let(:counter) { Object.new }
+  let(:counter) { double(inc: inc) }
   let(:inc) { 1 }
-  let(:object) { Object.new }
-
-  before do
-    allow(counter).to receive(:inc).with(object.class).and_return(inc)
-  end
+  let(:object) { double }
 
   subject { described_class.new(counter: counter) }
 

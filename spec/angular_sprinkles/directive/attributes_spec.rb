@@ -1,17 +1,12 @@
 require 'spec_helper'
 
 describe AngularSprinkles::Directive::Attributes do
-  let(:stub) { Object.new }
-
-  let(:name) { stub }
-  let(:input) { stub }
-  let(:options) { stub }
+  let(:something) { double(attributes: {}) }
+  let(:name) { something }
+  let(:input) { something }
+  let(:options) { something }
   let(:content) { 'content' }
   let(:tag) { :div }
-
-  before do
-    allow(stub).to receive(:attributes).and_return({})
-  end
 
   subject do
     described_class.new([name, input, options], content: content, tag: tag)

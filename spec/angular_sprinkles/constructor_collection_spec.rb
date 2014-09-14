@@ -2,13 +2,8 @@ require 'spec_helper'
 
 describe AngularSprinkles::ConstructorCollection do
   let(:json_wrapper) { ->{} }
-  let(:object_wrapper) { Object.new }
-
   let(:stub) { "stub" }
-
-  before do
-    allow(object_wrapper).to receive(:new).and_return(stub)
-  end
+  let(:object_wrapper) { double(new: stub) }
 
   subject { described_class.new(json_wrapper: json_wrapper, object_wrapper: object_wrapper) }
 

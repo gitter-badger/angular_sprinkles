@@ -45,6 +45,10 @@ module AngularSprinkles
       "this.#{key} = #{object.to_json};"
     end
 
+    ControllerPrototypeVariable = ->(*args) do
+      "#{CONTROLLER_FN}.prototype.#{args.join('.')}"
+    end
+
     RegisterService = ->(method) do
       "#{SERVICE_QUEUE}.push('#{method}')"
     end
@@ -53,8 +57,21 @@ module AngularSprinkles
       "#{CONTROLLER_NAME}.#{method}(#{input.join(',')})"
     end
 
-    BindVariable = ->(key, attribute) do
-      [CONTROLLER_NAME, key, attribute].flatten.compact.join('.')
+    RegisterVariable = ->(*args) do
+      args.pop
+
+      acc, _ = args.inject(['', []]) do |(acc, store), arg|
+        store.push(arg)
+        prototype = ControllerPrototypeVariable.call(store)
+        acc += "#{prototype} = #{prototype} || {};\n"
+        [acc, store]
+      end
+
+      acc
+    end
+
+    BindVariable = ->(*args) do
+      [CONTROLLER_NAME, *args].flatten.compact.join('.')
     end
   end
 end

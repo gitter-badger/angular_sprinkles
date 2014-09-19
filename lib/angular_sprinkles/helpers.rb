@@ -1,6 +1,7 @@
 module AngularSprinkles
   module Helpers
-    include ServiceHelper
+    include BindHelper
     include DirectiveHelper
+    include ServiceHelper
   end
 end

@@ -1,9 +1,17 @@
 <div id="data-binding-div" ng-bind="<%= @model.bind(:name) %>"></div>
 <div id="bind-service-div" ng-bind="<%= service(:hello_world, @model.bind(:name)) %>"></div>
+<div id="bind-div" ng-bind="<%= bind(:hello, :world) %>"></div>
 
 <%= directive(:big_hello_world, html: { id: "directive-div" }) do %>
   <%= directive(:nested_directive, name: @model.bind(:name), html: { tag: 'h1' }) %>
 <% end %>
 
-<label for="input">Input</label>
-<input id="input" name="input" type="text" ng-model="<%= @model.bind(:name) %>" />
+<div id="model-bind">
+  <label for="input">Input</label>
+  <input id="input" name="input" type="text" ng-model="<%= @model.bind(:name) %>" />
+</div>
+
+<div id="bind-bind">
+  <label for="bind">Bind</label>
+  <input id="bind" name="bind" type="text" ng-model="<%= bind(:hello, :world) %>" />
+</div>

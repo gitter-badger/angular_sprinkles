@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-gem "rails"
-gem "angularjs-rails"
+gem "rails", ">= 3", "< 5"
+gem "angularjs-rails", "~> 1"
 
 group :development do
   gem "jeweler"

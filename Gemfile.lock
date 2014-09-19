@@ -178,12 +178,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  angularjs-rails
+  angularjs-rails (~> 1)
   capybara
   coveralls
   jeweler
   launchy
-  rails
+  rails (>= 3, < 5)
   rspec-rails
   selenium-webdriver
   sqlite3

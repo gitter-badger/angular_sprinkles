@@ -25,5 +25,5 @@
 
 <%= form_for @model, url: '' do |f| %>
   <%= f.label :name %>
-  <%= f.ng_text_field :name %>
+  <%= f.bind(:text_field, :name) %>
 <% end %>

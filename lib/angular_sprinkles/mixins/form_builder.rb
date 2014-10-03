@@ -24,6 +24,14 @@ module AngularSprinkles
       collection_radio_buttons: 'method, collection, value_method, text_method, _options = {}, options = {}, &block'
     }
 
+    DEFAULT_ARGS = /
+      \s* \= \s* (
+        \{\} |
+        \"0\" |
+        \"1\"
+      )
+    /x
+
     ##
     # .helpers_and_args
     #
@@ -42,7 +50,7 @@ module AngularSprinkles
         class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
           def ng_#{selector}(#{args})
             options.merge!('ng-model' => @object.bind(method.to_sym))
-            #{selector}(#{args.gsub(/\= (\{\}|\"0\"|\"1\")/, '')})
+            #{selector}(#{args.gsub(DEFUALT_ARGS, '')})
           end
         RUBY_EVAL
       end

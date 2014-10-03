@@ -21,3 +21,6 @@ require "angular_sprinkles/mixins/form_builder"
 require "angular_sprinkles/model_decorator"
 require "angular_sprinkles/object_key_wrapper"
 require "angular_sprinkles/railtie"
+
+ActionController::Base.send(:include, AngularSprinkles::Mixins::Controller)
+ActionView::Helpers::FormBuilder.send(:include, AngularSprinkles::Mixins::FormBuilder)

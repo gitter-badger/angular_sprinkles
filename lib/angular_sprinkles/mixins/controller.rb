@@ -50,5 +50,3 @@ module AngularSprinkles
     end
   end
 end
-
-ActionController::Base.send(:include, AngularSprinkles::Mixins::Controller)

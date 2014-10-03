@@ -14,5 +14,3 @@ module AngularSprinkles
     end
   end
 end
-
-ActionView::Helpers::FormBuilder.send(:include, AngularSprinkles::Mixins::FormBuilder)

@@ -8,7 +8,7 @@ feature "javascript", js: true do
   let(:new_name) { 'namenamename?' }
 
   before do
-    visit root_path(name: name)
+    visit javascript_bindings_path(name: name)
   end
 
   it "should test all the things" do

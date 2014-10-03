@@ -14,5 +14,4 @@ group :test do
   gem "selenium-webdriver"
   gem "launchy"
   gem "sqlite3"
-  gem "byebug"
 end

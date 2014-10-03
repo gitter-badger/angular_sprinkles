@@ -5,7 +5,7 @@ describe TestController do
 
   let(:name) { "name" }
 
-  subject { get :new, { name: name }}
+  subject { get :javascript_bindings, { name: name }}
 
   it "renders the view with the correct bindings" do
     model_name = "TestModel_1"

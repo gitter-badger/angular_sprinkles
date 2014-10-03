@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root 'test#new'
+  root 'test#javascript_bindings'
+
+  get 'javascript_bindings', to: 'test#javascript_bindings'
+  get 'form_helpers', to: 'test#form_helpers'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

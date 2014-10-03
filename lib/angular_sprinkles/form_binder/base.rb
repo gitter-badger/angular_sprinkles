@@ -4,8 +4,11 @@ module AngularSprinkles
       def initialize(_args)
         @method = _args.fetch(:method)
         @args = _args.fetch(:args).dup
-        @object = _args.fetch(:object)
-        @attribute = @args.first.to_sym
+
+        object = _args.fetch(:object)
+        attribute = @args.first.to_sym
+
+        @attribute_binding = object.bind(attribute)
       end
 
       def call
@@ -14,7 +17,7 @@ module AngularSprinkles
           return @method.call(*@args)
         end
 
-        bind_to_model({ args: @args, method: @method, object: @object, attribute: @attribute })
+        bind_to_model({ args: @args, method: @method, attribute_binding: @attribute_binding })
 
         @method.call(*@args)
       end

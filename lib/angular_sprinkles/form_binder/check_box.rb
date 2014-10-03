@@ -5,11 +5,12 @@ module AngularSprinkles
 
       def bind_to_model(params)
         args = params.fetch(:args)
-        object = params.fetch(:object)
-        attribute = params.fetch(:attribute)
+        binding = { 'ng-model' => params.fetch(:attribute_binding) }
 
         if args.many?
-          args.second.merge!('ng-model' => object.bind(attribute))
+          args.second.merge!(binding)
+        else
+          args.push(binding)
         end
       end
     end

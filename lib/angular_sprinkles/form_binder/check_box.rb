@@ -8,7 +8,7 @@ module AngularSprinkles
         binding = { 'ng-model' => params.fetch(:attribute_binding) }
 
         if args.many?
-          args.second.merge!(binding)
+          args.second.reverse_merge!(binding)
         else
           args.push(binding)
         end

@@ -12,7 +12,7 @@ module AngularSprinkles
         (method.arity.abs - args.count).times { args.push({}) }
 
         # The last argument is always the one where ng-model should be appended
-        args.last.merge!('ng-model' => params.fetch(:attribute_binding))
+        args.last.reverse_merge!('ng-model' => params.fetch(:attribute_binding))
       end
     end
   end

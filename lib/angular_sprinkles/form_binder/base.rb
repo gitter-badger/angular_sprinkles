@@ -12,19 +12,15 @@ module AngularSprinkles
       end
 
       def call
-        if helper_is_going_raise_argument_error?
-          # Let the original form helper raise the exception
-          return @method.call(*@args)
-        end
+        # Let the original form helper raise the exception
+        return @args if helper_is_going_raise_argument_error?
 
-        bind_to_model({ args: @args, method: @method, attribute_binding: @attribute_binding })
-
-        @method.call(*@args)
+        args_with_binding
       end
 
       private
 
-      def bind_to_model(params); raise NotImplementedError; end
+      def args_with_binding; raise NotImplementedError; end
 
       def helper_is_going_raise_argument_error?
         @args.count < required_parameters.count

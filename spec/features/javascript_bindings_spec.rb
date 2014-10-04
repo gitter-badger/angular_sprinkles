@@ -3,7 +3,7 @@ require "rails_helper"
 # javascript specs are slow, so test everything at
 # once on a single page
 
-feature "javascript", js: true do
+feature "javascript_bindings", js: true do
   let(:name) { 'name' }
   let(:new_name) { 'namenamename?' }
 

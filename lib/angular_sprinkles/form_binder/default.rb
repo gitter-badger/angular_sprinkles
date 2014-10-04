@@ -3,16 +3,17 @@ module AngularSprinkles
     class Default < Base
       private
 
-      def bind_to_model(params)
-        args = params.fetch(:args)
-        method = params.fetch(:method)
+      def args_with_binding
+        binding = { 'ng-model' => @attribute_binding }
 
-        # Assume that optional params default to {}
-        # This is a safe assumption for all helpers except check_box
-        (method.arity.abs - args.count).times { args.push({}) }
+        @args.tap do |args|
+          # Assume that optional params default to {}
+          # This is a safe assumption for all helpers except check_box
+          (@method.arity.abs - args.count).times { args.push({}) }
 
-        # The last argument is always the one where ng-model should be appended
-        args.last.reverse_merge!('ng-model' => params.fetch(:attribute_binding))
+          # The last argument is always the one where ng-model should be appended
+          args.last.reverse_merge!(binding)
+        end
       end
     end
   end

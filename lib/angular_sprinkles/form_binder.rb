@@ -1,7 +1,9 @@
 module AngularSprinkles
   class FormBinder
     def self.new(args)
-      case args.fetch(:helper).to_sym
+      helper = args.fetch(:helper)
+
+      case helper
       when :check_box
         CheckBox.new(args)
       else

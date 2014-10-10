@@ -13,7 +13,9 @@ module AngularSprinkles
 
       def call
         # Let the original form helper raise the exception
-        return @args if helper_is_going_raise_argument_error?
+        if helper_is_going_raise_argument_error?
+          return @args
+        end
 
         args_with_binding
       end

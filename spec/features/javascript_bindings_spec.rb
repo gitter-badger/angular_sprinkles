@@ -3,12 +3,12 @@ require "rails_helper"
 # javascript specs are slow, so test everything at
 # once on a single page
 
-feature "javascript", js: true do
+feature "javascript_bindings", js: true do
   let(:name) { 'name' }
   let(:new_name) { 'namenamename?' }
 
   before do
-    visit root_path(name: name)
+    visit javascript_bindings_path(name: name)
   end
 
   it "should test all the things" do

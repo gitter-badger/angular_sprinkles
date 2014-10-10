@@ -15,10 +15,3 @@
   <label for="bind">Bind</label>
   <input id="bind" name="bind" type="text" ng-model="<%= bind(:hello, :world) %>" />
 </div>
-
-<%# Rails bug with form_for and simple delegator. %>
-<%# Add this here to test the work around. %>
-<%= form_for @model, url: '' do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-<% end %>

@@ -1,0 +1,26 @@
+<%= form_for @model, url: '' do |f| %>
+  <%# working 100%! %>
+    <% [:text_field, :password_field, :hidden_field, :file_field, :text_area,
+      :check_box, :color_field, :search_field, :telephone_field,
+      :phone_field, :date_field, :time_field, :datetime_field, :datetime_local_field,
+      :month_field, :week_field, :url_field, :email_field, :number_field, :range_field].each do |helper| %>
+
+      <%= f.send("bind_#{helper}", :name) %>
+    <% end %>
+
+    <%= f.bind_radio_button :name, :cool %>
+
+  <%# still need to check [:collection_check_boxes, :collection_radio_buttons] %>
+
+  <%# bind method works, but binding not correctly hooking up %>
+    <%# <%= f.bind_select :name %1> %>
+    <%# <%= f.bind_date_select :name %1> %>
+    <%# <%= f.bind_time_select :name %1> %>
+    <%# <%= f.bind_datetime_select :name %1> %>
+    <%# <%= f.bind_time_zone_select :name, nil, include_blank: true %1> %>
+
+  <%# doesn't work at all %>
+    <%# <%= f.bind_collection_select :name, :id, [], :id, :name %1> %>
+    <%# <%= f.bind_grouped_collection_select :name %1> %>
+
+<% end %>

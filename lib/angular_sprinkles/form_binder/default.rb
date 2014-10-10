@@ -4,7 +4,7 @@ module AngularSprinkles
       private
 
       def args_with_binding
-        binding = { 'ng-model' => @attribute_binding }
+        binding = { "ng-model" => @attribute_binding }
 
         @args.tap do |args|
           # Assume that optional params default to {}

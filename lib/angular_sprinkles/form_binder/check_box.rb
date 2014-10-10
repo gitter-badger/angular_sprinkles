@@ -4,8 +4,14 @@ module AngularSprinkles
       private
 
       def augment_args
+        binding = { "ng-model" => @attribute_binding }
+
         @args.tap do |args|
-          args.second.reverse_merge!({ "ng-model" => @attribute_binding })
+          if args.many?
+            args.second.reverse_merge!(binding)
+          else
+            args.push(binding)
+          end
         end
       end
     end

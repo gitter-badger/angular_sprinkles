@@ -9,18 +9,18 @@
     <% end %>
 
     <%= f.bind_radio_button :name, :cool %>
-
-  <%# still need to check [:collection_check_boxes, :collection_radio_buttons] %>
+    <%= f.bind_select :name, [1,2,3] %>
+    <%= f.bind_time_zone_select :name, nil, include_blank: true %>
 
   <%# bind method works, but binding not correctly hooking up %>
-    <%# <%= f.bind_select :name %1> %>
     <%# <%= f.bind_date_select :name %1> %>
     <%# <%= f.bind_time_select :name %1> %>
     <%# <%= f.bind_datetime_select :name %1> %>
-    <%# <%= f.bind_time_zone_select :name, nil, include_blank: true %1> %>
 
   <%# doesn't work at all %>
     <%# <%= f.bind_collection_select :name, :id, [], :id, :name %1> %>
     <%# <%= f.bind_grouped_collection_select :name %1> %>
+    <%# <%= f.bind_collection_check_boxes :name %1> %>
+    <%# <%= f.bind_collection_radio_buttons :name %1> %>
 
 <% end %>

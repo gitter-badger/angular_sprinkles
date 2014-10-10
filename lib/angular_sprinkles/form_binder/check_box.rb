@@ -3,15 +3,9 @@ module AngularSprinkles
     class CheckBox < Base
       private
 
-      def args_with_binding
-        binding = { "ng-model" => @attribute_binding }
-
+      def augment_args
         @args.tap do |args|
-          if args.many?
-            args.second.reverse_merge!(binding)
-          else
-            args.push(binding)
-          end
+          args.second.reverse_merge!({ "ng-model" => @attribute_binding })
         end
       end
     end

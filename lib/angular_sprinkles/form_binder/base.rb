@@ -17,12 +17,12 @@ module AngularSprinkles
           return @args
         end
 
-        args_with_binding
+        augment_args
       end
 
       private
 
-      def args_with_binding; raise NotImplementedError; end
+      def augment_args; raise NotImplementedError; end
 
       def helper_is_going_raise_argument_error?
         @args.count < required_parameters.count

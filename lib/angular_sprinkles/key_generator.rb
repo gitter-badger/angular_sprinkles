@@ -5,7 +5,7 @@ module AngularSprinkles
     end
 
     def call(object)
-      klass = object.class
+      klass = "#{object.class}".gsub("::", "__")
       count = @counter.inc(klass)
 
       "#{klass}_#{count}"

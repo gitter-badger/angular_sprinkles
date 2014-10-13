@@ -1,0 +1,5 @@
+<%= bind_form_for @model, :form_submitted do |f| %>
+  <%= f.submit 'Submit' %>
+<% end %>
+
+<div ng-bind="<%= @model.bind(:life) %>"></div>

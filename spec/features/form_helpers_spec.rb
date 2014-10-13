@@ -1,8 +1,5 @@
 require "rails_helper"
 
-# javascript specs are slow, so test everything at
-# once on a single page
-
 feature "form_helpers", js: true do
   let(:name) { 'name' }
   let(:new_name) { 'namenamename?' }

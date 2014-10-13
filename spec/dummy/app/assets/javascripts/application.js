@@ -19,6 +19,12 @@ sprinkles.service('helloWorld', function () {
   };
 });
 
+sprinkles.service('formSubmitted', function () {
+  return function (model, form) {
+    return model.life = '42';
+  };
+});
+
 sprinkles.directive('nestedDirective', function () {
   return {
     scope: {

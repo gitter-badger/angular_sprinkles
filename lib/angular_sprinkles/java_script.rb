@@ -73,5 +73,9 @@ module AngularSprinkles
     BindVariable = ->(*args) do
       [CONTROLLER_NAME, *args].flatten.compact.join('.')
     end
+
+    NoOp = ->(*args) do
+      args.join('.')
+    end
   end
 end

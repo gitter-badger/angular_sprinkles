@@ -1,5 +1,3 @@
-require 'byebug'
-
 module AngularSprinkles
   module Helpers
     module BindFormForHelper

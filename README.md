@@ -97,7 +97,7 @@ sprinkles.service('alertMe', function () {
 
 ### Form helpers
 
-Sprinkles comes with helpers for automatically creating binding with your form elements. Almost all of the usual form helpers are available with the `bind_*` prefix. (See [issue #4](https://github.com/BrewhouseTeam/angular_sprinkles/issues/4) for a list of helpers that are not currently supported).
+Sprinkles comes with helpers for automatically creating bindings with your form elements. Almost all of the usual form helpers are available with the `bind_*` prefix. (See [issue #4](https://github.com/BrewhouseTeam/angular_sprinkles/issues/4) for a list of helpers that are not currently supported).
 
 ```erb
 <%= form_for @user do |f| %>

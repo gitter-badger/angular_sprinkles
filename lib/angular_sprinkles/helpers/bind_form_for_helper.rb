@@ -19,7 +19,7 @@ module AngularSprinkles
 
         augmented_options = options.merge(url: "", method: "", html: html_options)
 
-        form_for(record, augmented_options, &block)
+        form_for(record, augmented_options, &block).gsub('action="" ', '').html_safe
       end
     end
   end

@@ -10,10 +10,7 @@ module AngularSprinkles
       # is the name of a service. Two arguments are passed to the service:
       # the object and the Angular representation of the form.
       def bind_form_for(record, submit_callback, options = {}, &block)
-        form_name = ObjectKeyWrapper.new(
-          @_sprinkles.key_generator.call(AngularSprinkles::Form.new),
-          JavaScript::NoOp
-        )
+        form_name = ObjectKeyWrapper.new('form', JavaScript::NoOp)
 
         html_options = {
           'name' => form_name,
@@ -26,13 +23,4 @@ module AngularSprinkles
       end
     end
   end
-
-  private
-
-  ##
-  # AngularSprinkles::Form
-  #
-  # An empty placeholder class to be used by KeyGenerator when adding
-  # the form_name attribute in AngularSprinkles::Helpers::BindFormForHelper
-  class Form; end
 end

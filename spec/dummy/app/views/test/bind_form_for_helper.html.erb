@@ -6,7 +6,4 @@
 <%= bind_form_for [@model, @models], :form_submitted do |f| %>
 <% end %>
 
-<%= bind_form_for @models, :form_submitted do |f| %>
-<% end %>
-
 <div ng-bind="<%= @model.bind(:life) %>"></div>

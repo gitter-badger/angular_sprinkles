@@ -3,7 +3,10 @@
 <% end %>
 
 <%# test that this works %>
-<%= bind_form_for [@model, @model], :form_submitted do |f| %>
+<%= bind_form_for [@model, @models], :form_submitted do |f| %>
+<% end %>
+
+<%= bind_form_for @models, :form_submitted do |f| %>
 <% end %>
 
 <div ng-bind="<%= @model.bind(:life) %>"></div>

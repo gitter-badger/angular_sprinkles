@@ -3,7 +3,10 @@ class TestController < ApplicationController
 
   def javascript_bindings; end
   def form_helpers; end
-  def bind_form_for_helper; end
+
+  def bind_form_for_helper
+    @models = bindable([@model])
+  end
 
   def set_model
     @model = bindable(TestModel.new(name: params[:name]))

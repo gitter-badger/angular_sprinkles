@@ -2,7 +2,16 @@ module AngularSprinkles
   module Helpers
     module DirectiveHelper
       def directive(directive_name, options = {}, &block)
-        content = capture(&block) if block_given?
+        if block_given?
+          controller = Directive::Controller.new({
+            name: "#{directive_name.to_s.camelize(:lower)}Ctrl",
+            object_wrapper: ObjectKeyWrapper,
+            bind_json_wrapper: JavaScript::NoOp,
+            call_json_wrapper: JavaScript::BindService
+          })
+
+          content = capture(controller, &block)
+        end
 
         name = Directive::Name.new(directive_name)
         input = Directive::Input.new(options.except(:html))

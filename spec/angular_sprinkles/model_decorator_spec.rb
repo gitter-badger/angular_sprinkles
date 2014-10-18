@@ -12,7 +12,7 @@ describe AngularSprinkles::ModelDecorator do
   end
 
   describe "#bind" do
-    it 'returns a binding object' do
+    it "returns a binding object" do
       expect(object_wrapper).to receive(:new).with(key, attribute, json_wrapper)
       subject.bind(attribute)
 
@@ -22,7 +22,7 @@ describe AngularSprinkles::ModelDecorator do
   end
 
   describe "#class" do
-    it 'delegates to the wrapped object' do
+    it "delegates to the wrapped object" do
       expect(subject.class).to eq(object.class)
     end
   end

@@ -17,7 +17,6 @@ feature "javascript_bindings", js: true do
     # this element starts out empty
     expect { find("#bind-div") }.to raise_error
 
-
     fill_in("Input", with: new_name)
     expect(find("#data-binding-div")).to have_content(new_name)
     expect(find("#bind-service-div")).to have_content("Hello #{new_name}")
@@ -25,5 +24,9 @@ feature "javascript_bindings", js: true do
 
     fill_in("Bind", with: new_name)
     expect(find("#bind-div")).to have_content(new_name)
+
+    # directive controller results
+    expect(find("#directive-ctrl-bind")).to have_content("bigHelloWorldCtrlAttribute")
+    expect(find("#directive-ctrl-call")).to have_content(42)
   end
 end

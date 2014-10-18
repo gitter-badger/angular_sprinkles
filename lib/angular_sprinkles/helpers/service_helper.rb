@@ -7,7 +7,7 @@ module AngularSprinkles
         register_service = ObjectKeyWrapper.new(camelized, JavaScript::RegisterService)
         @_sprinkles.content_yielder.call(register_service)
 
-        ObjectKeyWrapper.new(camelized, input, JavaScript::BindService)
+        ObjectKeyWrapper.new(camelized, input, JavaScript::BindRootService)
       end
     end
   end

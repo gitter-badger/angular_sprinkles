@@ -25,6 +25,20 @@ sprinkles.service('formSubmitted', function () {
   };
 });
 
+sprinkles.directive('bigHelloWorld', function () {
+  return {
+    scope: true,
+    controllerAs: 'bigHelloWorldCtrl',
+    controller: function () {
+      this.attribute = 'bigHelloWorldCtrlAttribute';
+
+      this.func = function (name) {
+        return name;
+      };
+    }
+  }
+});
+
 sprinkles.directive('nestedDirective', function () {
   return {
     scope: {

@@ -2,7 +2,10 @@
 <div id="bind-service-div" ng-bind="<%= service(:hello_world, @model.bind(:name)) %>"></div>
 <div id="bind-div" ng-bind="<%= bind(:hello, :world) %>"></div>
 
-<%= directive(:big_hello_world, html: { id: "directive-div" }) do %>
+<%= directive(:big_hello_world, html: { id: "directive-div" }) do |ctrl| %>
+  <div id="directive-ctrl-bind" ng-bind="<%= ctrl.bind(:attribute) %>"></div>
+  <div id="directive-ctrl-call" ng-bind="<%= ctrl.call(:func, 42) %>"></div>
+
   <%= directive(:nested_directive, name: @model.bind(:name), html: { tag: 'h1' }) %>
 <% end %>
 

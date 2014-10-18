@@ -53,8 +53,12 @@ module AngularSprinkles
       "#{SERVICE_QUEUE}.push('#{method}')"
     end
 
-    BindService = ->(method, input) do
-      "#{CONTROLLER_NAME}.#{method}(#{input.join(',')})"
+    BindRootService = -> (*args) do
+      BindService.call(CONTROLLER_NAME, *args)
+    end
+
+    BindService = ->(controller_name, method, input) do
+      "#{controller_name}.#{method}(#{input.join(',')})"
     end
 
     RegisterVariable = ->(*args) do
@@ -71,11 +75,11 @@ module AngularSprinkles
     end
 
     BindVariable = ->(*args) do
-      [CONTROLLER_NAME, *args].flatten.compact.join('.')
+      NoOp.call(*[CONTROLLER_NAME, *args])
     end
 
     NoOp = ->(*args) do
-      args.join('.')
+      args.flatten.compact.join('.')
     end
   end
 end

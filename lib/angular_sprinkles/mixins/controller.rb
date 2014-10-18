@@ -3,7 +3,11 @@ module AngularSprinkles
     module Controller
       def initialize(*args)
         counter = Counter.new
-        key_generator = KeyGenerator.new(counter: counter)
+        cache = Cache.new
+        key_generator = KeyGenerator.new({
+          counter: counter,
+          cache: cache
+        })
 
         constructor_collection = ConstructorCollection.new({
           json_wrapper: JavaScript::ConstructorThis,

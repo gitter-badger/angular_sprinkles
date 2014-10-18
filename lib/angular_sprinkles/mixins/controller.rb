@@ -2,11 +2,9 @@ module AngularSprinkles
   module Mixins
     module Controller
       def initialize(*args)
-        counter = Counter.new
-        cache = Cache.new
         key_generator = KeyGenerator.new({
-          counter: counter,
-          cache: cache
+          counter: Counter.new,
+          cache: Cache.new
         })
 
         constructor_collection = ConstructorCollection.new({

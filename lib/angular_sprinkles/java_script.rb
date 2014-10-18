@@ -58,7 +58,7 @@ module AngularSprinkles
     end
 
     BindService = ->(controller_name, method, input) do
-      "#{controller_name}.#{method}(#{input.join(',')})"
+      "#{controller_name}.#{method}(#{input.map(&:to_json).join(',')})"
     end
 
     RegisterVariable = ->(*args) do

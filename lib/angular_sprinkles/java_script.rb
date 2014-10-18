@@ -53,7 +53,7 @@ module AngularSprinkles
       "#{SERVICE_QUEUE}.push('#{method}')"
     end
 
-    BindRootService = -> (*args) do
+    BindRootService = ->(*args) do
       BindService.call(CONTROLLER_NAME, *args)
     end
 

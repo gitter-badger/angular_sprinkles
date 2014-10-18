@@ -40,7 +40,7 @@ module AngularSprinkles
       def view_context
         super.tap do |context|
           @_sprinkles.content_yielder = ContentYielder.new({
-            cache: ContentCache.new,
+            cache: Cache.new,
             context: context,
             yield_to: JavaScript::PREFIX
           })

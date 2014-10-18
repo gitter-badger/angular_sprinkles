@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AngularSprinkles::ContentCache do
+describe AngularSprinkles::Cache do
   let(:key) { 'key' }
 
   subject { described_class.new }

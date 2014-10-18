@@ -1,6 +1,6 @@
+require "angular_sprinkles/cache"
 require "angular_sprinkles/constructor"
 require "angular_sprinkles/constructor_collection"
-require "angular_sprinkles/content_cache"
 require "angular_sprinkles/content_yielder"
 require "angular_sprinkles/directive/attributes"
 require "angular_sprinkles/directive/input"

@@ -1,5 +1,5 @@
 module AngularSprinkles
-  class ContentCache
+  class Cache
     def initialize
       @store = {}
     end

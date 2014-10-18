@@ -4,12 +4,16 @@ module AngularSprinkles
       @store = {}
     end
 
-    def set(content)
-      @store[content.to_s] = true
+    def get(key)
+      @store[key]
     end
 
-    def set?(content)
-      @store.has_key?(content.to_s)
+    def set(key, content = true)
+      @store[key] = content
+    end
+
+    def set?(key)
+      @store.has_key?(key)
     end
   end
 end

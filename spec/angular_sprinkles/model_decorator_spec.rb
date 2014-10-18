@@ -21,4 +21,10 @@ describe AngularSprinkles::ModelDecorator do
     end
   end
 
+  describe "#class" do
+    it 'delegates to the wrapped object' do
+      expect(subject.class).to eq(object.class)
+    end
+  end
+
 end

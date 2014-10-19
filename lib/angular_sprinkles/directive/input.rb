@@ -12,7 +12,9 @@ module AngularSprinkles
       private
 
       def to_json_hash
-        Hash[@args.map { |k, v| [k, v.to_json] }]
+        Hash[@args.map do |k, v|
+          [k, v.is_a?(String) ? v : v.to_json]
+        end]
       end
     end
   end

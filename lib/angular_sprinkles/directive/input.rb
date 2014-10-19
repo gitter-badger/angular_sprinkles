@@ -2,7 +2,7 @@ module AngularSprinkles
   module Directive
     class Input
       def initialize(args)
-        @args = (args || {}).symbolize_keys
+        @args = (args || {})
       end
 
       def attributes
@@ -13,7 +13,7 @@ module AngularSprinkles
 
       def to_json_hash
         Hash[@args.map do |k, v|
-          [k, v.is_a?(String) ? v : v.to_json]
+          [k.to_s.underscore.dasherize, v.is_a?(String) ? v : v.to_json]
         end]
       end
     end

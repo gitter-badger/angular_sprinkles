@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe AngularSprinkles::Directive::Input do
-  let(:args) { { key: value } }
+  let(:args) { { "key" => value } }
 
   subject { described_class.new(args) }
 
@@ -17,7 +17,7 @@ describe AngularSprinkles::Directive::Input do
     let(:value) { double(to_json: 1) }
 
     it "turns the args hash into a jsonified data hash" do
-      expect(subject.attributes).to eq({ data: { key: 1 } })
+      expect(subject.attributes).to eq({ data: { "key" => 1 } })
     end
   end
 end

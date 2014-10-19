@@ -2,7 +2,7 @@ module AngularSprinkles
   module Directive
     class Name
       def initialize(*names)
-        @names = names.flatten
+        @names = names.flatten.map { |name| name.to_s.underscore.dasherize }
       end
 
       def attributes

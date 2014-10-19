@@ -6,6 +6,6 @@ describe AngularSprinkles::Directive::Name do
   subject { described_class.new(args) }
 
   it 'turns the args hash into an empty data hash' do
-    expect(subject.attributes).to eq({ data: { first: '', second: '', third: '' } })
+    expect(subject.attributes).to eq({ data: { "first" => '', "second" => '', "third" => '' } })
   end
 end

@@ -13,13 +13,13 @@
 //= require angular_sprinkles
 //= require_tree .
 
-sprinkles.service('helloWorld', function () {
+sprinkles.service('hello_world', function () {
   return function (input) {
     return "Hello " + input;
   };
 });
 
-sprinkles.service('formSubmitted', function () {
+sprinkles.service('form_submitted', function () {
   return function (model, form) {
     return model.life = '42';
   };

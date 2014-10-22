@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AngularSprinkles::Element::Controller do
+describe AngularSprinkles::Element::Scope do
   let(:base) { double }
   let(:object_wrapper) { double }
   let(:bind_json_wrapper) { double }

@@ -1,6 +1,6 @@
 module AngularSprinkles
   module Element
-    class Controller
+    class Scope
       def initialize(args)
         @base = args.fetch(:base)
         @object_wrapper = args.fetch(:object_wrapper)

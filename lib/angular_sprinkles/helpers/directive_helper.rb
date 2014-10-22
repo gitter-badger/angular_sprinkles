@@ -3,14 +3,14 @@ module AngularSprinkles
     module DirectiveHelper
       def directive(directive_name, options = {}, &block)
         if block_given?
-          controller = Element::Controller.new({
+          scope = Element::Scope.new({
             base: "#{directive_name}Ctrl",
             object_wrapper: ObjectKeyWrapper,
             bind_json_wrapper: JavaScript::NoOp,
             call_json_wrapper: JavaScript::BindService
           })
 
-          content = capture(controller, &block)
+          content = capture(scope, &block)
         end
 
         name = Element::Name.new(directive_name)

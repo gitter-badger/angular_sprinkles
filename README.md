@@ -42,6 +42,7 @@ Include and `angular_sprinkles` into your `application.js`.
 
 - [Two-way binding](#two-way-binding)
 - [Directives](#directives)
+- [Controllers and Isolate Scopes](#controllers-and-isolate-scopes)
 - [Inlining function calls](#inlining-function-calls)
 - [Form helpers](#form-helpers)
 
@@ -78,6 +79,60 @@ sprinkles.directive('blink', function () {
   Hello, world
 <% end %>
 ```
+
+Directives can also return it's controller to a ruby block if the directive uses transclusion.
+
+```erb
+<script>
+sprinkles.directive('someDirective', function () {
+  return {
+    transclude: true,
+    template: '<div ng-transclude></div>',
+    // note: 'controllerAs' must be the directive name + 'Ctrl'
+    controllerAs: 'someDirectiveCtrl',
+    controller: function () {
+      this.alertMe = function (name) {
+        alert('Hi, ' + name);
+      };
+    }
+  }
+});
+</script>
+
+<%= directive(:someDirective) do |some_ctrl| %>
+  <button ng-click="<%= some_ctrl.call('Gabe') %>">CLICK ME!</button>
+<% end %>
+```
+
+### Controllers and Isolate Scopes
+
+If you would rather skip the directive and just create a controller, there is the `ctrl` helper.
+
+```erb
+<script>
+sprinkles.controller('someCtrl', function () {
+  this.alertMe = function (name) {
+    alert('Hi, ' + name);
+  };
+});
+</script>
+
+<%= ctrl(:someCtrl) do |some_ctrl| %>
+  <button ng-click="<%= some_ctrl.call('Gabe') %>">CLICK ME!</button>
+<% end %>
+```
+
+This is good for localizing JavaScript behavior. Additionally, if you'd just like to create a new
+scope, you can use the `isolate` helper which creates an "anonymous" controller to wrap your element.
+
+```erb
+<%= isolate do |iso_ctrl| %>
+  <input ng-model="<%= iso_ctrl.bind(:isolated_binding) %>">
+  {{ <%= iso_ctrl.bind(:isolated_binding) %> }}
+<% end %>
+```
+
+As opposed to the `bind` helper, bindings made here do not apply to the scope of the root controller.
 
 ### Inlining function calls
 

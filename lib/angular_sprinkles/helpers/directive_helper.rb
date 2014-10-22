@@ -4,7 +4,7 @@ module AngularSprinkles
       def directive(directive_name, options = {}, &block)
         if block_given?
           controller = Directive::Controller.new({
-            name: "#{directive_name}Ctrl",
+            base: "#{directive_name}Ctrl",
             object_wrapper: ObjectKeyWrapper,
             bind_json_wrapper: JavaScript::NoOp,
             call_json_wrapper: JavaScript::BindService

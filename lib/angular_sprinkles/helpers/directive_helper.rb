@@ -13,11 +13,12 @@ module AngularSprinkles
           content = capture(scope, &block)
         end
 
-        name = Element::Name.new(directive_name)
+        options[directive_name] = ''
+
         input = Element::Input.new(options.except(:html))
         html = Element::Html.new(options[:html])
 
-        attributes = Element::Attributes.new([name, input, html], tag: html.tag, content: content)
+        attributes = Element::Attributes.new([input, html], tag: html.tag, content: content)
 
         content_tag(*attributes.to_content_tag)
       end

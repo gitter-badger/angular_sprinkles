@@ -1,5 +1,5 @@
 module AngularSprinkles
-  module Directive
+  module Element
     class Input
       def initialize(args)
         @args = (args || {})

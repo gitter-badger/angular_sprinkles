@@ -1,5 +1,5 @@
 module AngularSprinkles
-  module Directive
+  module Element
     class Controller
       def initialize(args)
         @base = args.fetch(:base)

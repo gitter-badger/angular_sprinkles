@@ -1,5 +1,5 @@
 module AngularSprinkles
-  module Directive
+  module Element
     class Attributes
       def initialize(args, options)
         @args = args

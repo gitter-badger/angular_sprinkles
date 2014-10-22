@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe AngularSprinkles::Directive::Input do
+describe AngularSprinkles::Element::Input do
   let(:args) { { "key" => value } }
 
   subject { described_class.new(args) }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AngularSprinkles::Directive::Name do
+describe AngularSprinkles::Element::Name do
   let(:args) { [:first, :second, :third] }
 
   subject { described_class.new(args) }

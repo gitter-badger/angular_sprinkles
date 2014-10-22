@@ -1,5 +1,5 @@
 module AngularSprinkles
-  module Directive
+  module Element
     class Html
       def initialize(args)
         @args = (args || {}).symbolize_keys

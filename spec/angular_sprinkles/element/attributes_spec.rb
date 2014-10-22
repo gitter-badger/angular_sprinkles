@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AngularSprinkles::Directive::Attributes do
+describe AngularSprinkles::Element::Attributes do
   let(:something) { double(attributes: {}) }
   let(:name) { something }
   let(:input) { something }

@@ -3,7 +3,7 @@ module AngularSprinkles
     module DirectiveHelper
       def directive(directive_name, options = {}, &block)
         if block_given?
-          controller = Directive::Controller.new({
+          controller = Element::Controller.new({
             base: "#{directive_name}Ctrl",
             object_wrapper: ObjectKeyWrapper,
             bind_json_wrapper: JavaScript::NoOp,
@@ -13,11 +13,11 @@ module AngularSprinkles
           content = capture(controller, &block)
         end
 
-        name = Directive::Name.new(directive_name)
-        input = Directive::Input.new(options.except(:html))
-        html = Directive::Html.new(options[:html])
+        name = Element::Name.new(directive_name)
+        input = Element::Input.new(options.except(:html))
+        html = Element::Html.new(options[:html])
 
-        attributes = Directive::Attributes.new([name, input, html], tag: html.tag, content: content)
+        attributes = Element::Attributes.new([name, input, html], tag: html.tag, content: content)
 
         content_tag(*attributes.to_content_tag)
       end

@@ -1,5 +1,5 @@
 module AngularSprinkles
-  module Directive
+  module Element
     class Name
       def initialize(*names)
         @names = names.flatten.map { |name| name.to_s.underscore.dasherize }

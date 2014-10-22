@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AngularSprinkles::Directive::Html do
+describe AngularSprinkles::Element::Html do
   let(:args) { { key: 'value', tag: 'a' } }
 
   subject { described_class.new(args) }

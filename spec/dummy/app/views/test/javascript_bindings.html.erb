@@ -13,6 +13,11 @@
   {{ <%= some_ctrl.bind(:someValue) %> }}
 <% end %>
 
+<%= isolate do |some_ctrl| %>
+  <div ng-init="<%= some_ctrl.bind(:someValue) %> = 42"></div>
+  <div id="isolate-div" ng-bind="<%= some_ctrl.bind(:someValue) %>"></div>
+<% end %>
+
 <div id="model-bind">
   <label for="input">Input</label>
   <input id="input" name="input" type="text" ng-model="<%= @model.bind(:name) %>" />

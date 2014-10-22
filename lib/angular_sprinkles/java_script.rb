@@ -81,5 +81,9 @@ module AngularSprinkles
     NoOp = ->(*args) do
       args.flatten.compact.join('.')
     end
+
+    IsolateController = ->(name) do
+      "sprinkles.controller('#{name}', angular.noop);"
+    end
   end
 end

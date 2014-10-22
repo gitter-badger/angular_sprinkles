@@ -9,6 +9,10 @@
   <%= directive(:nested_directive, name: @model.bind(:name), html: { tag: 'h1' }) %>
 <% end %>
 
+<%= ctrl(:someCtrl, html: { id: "ctrl-div" }) do |some_ctrl| %>
+  {{ <%= some_ctrl.bind(:someValue) %> }}
+<% end %>
+
 <div id="model-bind">
   <label for="input">Input</label>
   <input id="input" name="input" type="text" ng-model="<%= @model.bind(:name) %>" />

@@ -47,3 +47,7 @@ sprinkles.directive('nestedDirective', function () {
     template: '<h2>{{name}}</h2>'
   };
 });
+
+sprinkles.controller('someCtrl', function () {
+  this.someValue = 42;
+});

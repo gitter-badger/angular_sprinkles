@@ -132,7 +132,7 @@ scope, you can use the `isolate` helper which creates an "anonymous" controller 
 <% end %>
 ```
 
-As opposed to the `bind` helper, bindings made here do not apply to the scope of the root controller.
+In contrast with the `bind` helper, bindings made here do not apply to the scope of the root controller.
 
 ### Inlining function calls
 

@@ -1,15 +1,15 @@
 module AngularSprinkles
   module Helpers
-    module BindFormForHelper
+    module FormForHelper
 
       ##
-      # bind_form_for
+      # ng_form_for
       #
       # Wraps the form_for helper so that form submission can be bound
       # an Angular service function. Accepts an additional argument which
       # is the name of a service. Two arguments are passed to the service:
       # the object and the Angular representation of the form.
-      def bind_form_for(record, submit_callback, options = {}, &block)
+      def ng_form_for(record, submit_callback, options = {}, &block)
         form_name = ObjectKeyWrapper.new('form', JavaScript::NoOp)
 
         record = [record] if !record.is_a?(Array) # ensures that record will be handled in the same way whether or not it's an array

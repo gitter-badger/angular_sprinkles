@@ -1,6 +1,6 @@
 module AngularSprinkles
   module Helpers
-    include BindFormForHelper
+    include FormForHelper
     include BindHelper
     include ControllerHelper
     include DirectiveHelper

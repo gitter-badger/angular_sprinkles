@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'javascript_bindings', to: 'test#javascript_bindings'
   get 'form_helpers', to: 'test#form_helpers'
-  get 'bind_form_for_helper', to: 'test#bind_form_for_helper'
+  get 'form_for_helper', to: 'test#form_for_helper'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

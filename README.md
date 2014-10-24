@@ -54,7 +54,7 @@ Two-way binding works right out of the box with Sprinkles. Just wrap your object
 class UserController < ApplicationController
   def show
     # bindable gives your objects the bind method
-    @user = bindable(User.find(params[:id]))
+    @user = ng_bindable(User.find(params[:id]))
   end
 end
 ```
@@ -75,7 +75,7 @@ sprinkles.directive('blink', function () {
 });
 </script>
 
-<%= directive(:blink) do %>
+<%= ng_directive(:blink) do %>
   Hello, world
 <% end %>
 ```
@@ -99,7 +99,7 @@ sprinkles.directive('someDirective', function () {
 });
 </script>
 
-<%= directive(:someDirective) do |some_ctrl| %>
+<%= ng_directive(:someDirective) do |some_ctrl| %>
   <button ng-click="<%= some_ctrl.call('Gabe') %>">CLICK ME!</button>
 <% end %>
 ```
@@ -117,7 +117,7 @@ sprinkles.controller('someCtrl', function () {
 });
 </script>
 
-<%= ctrl(:someCtrl) do |some_ctrl| %>
+<%= ng_controller(:someCtrl) do |some_ctrl| %>
   <button ng-click="<%= some_ctrl.call('Gabe') %>">CLICK ME!</button>
 <% end %>
 ```
@@ -126,7 +126,7 @@ This is good for localizing JavaScript behavior. Additionally, if you'd just lik
 scope, you can use the `isolate` helper which creates an "anonymous" controller to wrap your element.
 
 ```erb
-<%= isolate do |iso_ctrl| %>
+<%= ng_isolate do |iso_ctrl| %>
   <input ng-model="<%= iso_ctrl.bind(:isolated_binding) %>">
   {{ <%= iso_ctrl.bind(:isolated_binding) %> }}
 <% end %>
@@ -147,7 +147,7 @@ sprinkles.service('alertMe', function () {
 });
 </script>
 
-<button ng-click="<%= service(:alert_me, "world") %>">Click me!</button>
+<button ng-click="<%= ng_service(:alert_me, "world") %>">Click me!</button>
 ```
 
 ### Form helpers
@@ -178,7 +178,7 @@ sprinkles.service('userFormHandler', function () {
 });
 </script>
 
-<%= bind_form_for @user, :user_form_handler do |f| %>
+<%= ng_form_for @user, :user_form_handler do |f| %>
   <%= f.bind_text_field :name %>
 <% end %>
 ```

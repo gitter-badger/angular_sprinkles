@@ -1,7 +1,7 @@
 module AngularSprinkles
   module Helpers
     module DirectiveHelper
-      def directive(directive_name, opts = {}, &block)
+      def ng_directive(directive_name, opts = {}, &block)
         options = opts.dup.symbolize_keys
 
         options[directive_name] = ""

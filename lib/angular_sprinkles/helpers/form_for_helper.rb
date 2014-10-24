@@ -16,7 +16,7 @@ module AngularSprinkles
 
         html_options = {
           'name' => form_name,
-          'ng-submit' => service(submit_callback, *record.map(&:bind), form_name)
+          'ng-submit' => ng_service(submit_callback, *record.map(&:bind), form_name)
         }.merge(options[:html] || {})
 
         augmented_options = options.merge(url: "", method: "", html: html_options)

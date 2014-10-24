@@ -1,21 +1,21 @@
 <div id="data-binding-div" ng-bind="<%= @model.bind(:name) %>"></div>
-<div id="bind-service-div" ng-bind="<%= service(:hello_world, @model.bind(:name)) %>"></div>
-<div id="bind-div" ng-bind="<%= bind(:hello, :world) %>"></div>
+<div id="bind-service-div" ng-bind="<%= ng_service(:hello_world, @model.bind(:name)) %>"></div>
+<div id="bind-div" ng-bind="<%= ng_bind(:hello, :world) %>"></div>
 
-<%= directive(:bigHelloWorld, html: { id: "directive-div" }) do |ctrl| %>
+<%= ng_directive(:bigHelloWorld, html: { id: "directive-div" }) do |ctrl| %>
   <div id="directive-ctrl-bind" ng-bind="<%= ctrl.bind(:attribute) %>"></div>
   <div id="directive-ctrl-call" ng-bind="<%= ctrl.call(:func, 'func result') %>"></div>
 
-  <%= directive(:nested_directive, name: @model.bind(:name), html: { tag: 'h1' }) %>
+  <%= ng_directive(:nested_directive, name: @model.bind(:name), html: { tag: 'h1' }) %>
 <% end %>
 
-<%= ctrl(:someCtrl, html: { id: "ctrl-div" }) do |some_ctrl| %>
-  {{ <%= some_ctrl.bind(:someValue) %> }}
+<%= ng_controller(:someCtrl, html: { id: "ctrl-div" }) do |ctrl| %>
+  {{ <%= ctrl.bind(:someValue) %> }}
 <% end %>
 
-<%= isolate do |some_ctrl| %>
-  <div ng-init="<%= some_ctrl.bind(:someValue) %> = 42"></div>
-  <div id="isolate-div" ng-bind="<%= some_ctrl.bind(:someValue) %>"></div>
+<%= ng_isolate do |ctrl| %>
+  <div ng-init="<%= ctrl.bind(:someValue) %> = 42"></div>
+  <div id="isolate-div" ng-bind="<%= ctrl.bind(:someValue) %>"></div>
 <% end %>
 
 <div id="model-bind">
@@ -25,5 +25,5 @@
 
 <div id="bind-bind">
   <label for="bind">Bind</label>
-  <input id="bind" name="bind" type="text" ng-model="<%= bind(:hello, :world) %>" />
+  <input id="bind" name="bind" type="text" ng-model="<%= ng_bind(:hello, :world) %>" />
 </div>

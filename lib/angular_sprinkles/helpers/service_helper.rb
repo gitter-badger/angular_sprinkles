@@ -1,7 +1,7 @@
 module AngularSprinkles
   module Helpers
     module ServiceHelper
-      def service(name, *input)
+      def ng_service(name, *input)
         register_service = ObjectKeyWrapper.new(name, JavaScript::RegisterService)
         @_sprinkles.content_yielder.call(register_service)
 

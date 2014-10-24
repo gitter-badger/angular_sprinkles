@@ -6,7 +6,7 @@ module AngularSprinkles
 
         options[directive_name] = ""
         options[:scope_name] ||= "#{directive_name}Ctrl"
-        _element(options, &block)
+        _ng_element(options, &block)
       end
     end
   end

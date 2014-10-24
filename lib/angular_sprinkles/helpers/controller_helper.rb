@@ -6,7 +6,7 @@ module AngularSprinkles
 
         options['ng-controller'] = "#{controller_name} as #{controller_name}"
         options[:scope_name] ||= controller_name
-        _element(options, &block)
+        _ng_element(options, &block)
       end
     end
   end

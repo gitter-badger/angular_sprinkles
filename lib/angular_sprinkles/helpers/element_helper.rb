@@ -1,7 +1,7 @@
 module AngularSprinkles
   module Helpers
     module ElementHelper
-      def _element(opts = {}, &block)
+      def _ng_element(opts = {}, &block)
         options = opts.dup.symbolize_keys
 
         scope_name = options.delete(:scope_name)

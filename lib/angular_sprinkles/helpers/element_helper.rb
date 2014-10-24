@@ -8,16 +8,7 @@ module AngularSprinkles
         html_options = options.delete(:html) || {}
         input_options = options # use remaining options
 
-        if block_given?
-          scope = Element::Scope.new({
-            base: scope_name,
-            object_wrapper: ObjectKeyWrapper,
-            bind_json_wrapper: JavaScript::NoOp,
-            call_json_wrapper: JavaScript::BindService
-          })
-
-          content = capture(scope, &block)
-        end
+        content = ng_wrap(scope_name, &block) if block_given?
 
         input = Element::Input.new(input_options)
         html = Element::Html.new(html_options)

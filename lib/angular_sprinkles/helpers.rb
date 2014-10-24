@@ -7,5 +7,6 @@ module AngularSprinkles
     include ElementHelper
     include IsolateHelper
     include ServiceHelper
+    include WrapHelper
   end
 end

@@ -5,10 +5,10 @@ class TestController < ApplicationController
   def form_helpers; end
 
   def form_for_helper
-    @models = bindable([@model])
+    @models = ng_bindable([@model])
   end
 
   def set_model
-    @model = bindable(TestModel.new(name: params[:name]))
+    @model = ng_bindable(TestModel.new(name: params[:name]))
   end
 end

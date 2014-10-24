@@ -26,9 +26,9 @@ module AngularSprinkles
         super
       end
 
-      def bindable(object)
+      def ng_bindable(object)
         object = object.to_a if object.is_a?(::ActiveRecord::Relation)
-        object.map!(&method(:bindable)) if object.is_a?(Array)
+        object.map!(&method(:ng_bindable)) if object.is_a?(Array)
         key = @_sprinkles.key_generator.call(object)
         @_sprinkles.constructor_collection.push(object, key)
         ModelDecorator.new({

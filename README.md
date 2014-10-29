@@ -101,7 +101,7 @@ sprinkles.directive('someDirective', function () {
 </script>
 
 <%= ng_directive(:someDirective) do |some_ctrl| %>
-  <button ng-click="<%= some_ctrl.call('Gabe') %>">CLICK ME!</button>
+  <button ng-click="<%= some_ctrl.call(:alertMe, 'Gabe') %>">CLICK ME!</button>
 <% end %>
 ```
 

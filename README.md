@@ -192,9 +192,19 @@ wrap the result of a `ng-repeat` so that it can be combined with the other helpe
 ```erb
 <div ng-repeat="user in <%= @users.bind %>">
   <%= ng_wrap('user') do |user| %>
-    <button ng-click="<%= ng_service(:alertMe, user.bind) %>">Alert me!</button>
+    {{ <%= user.bind %> }}
+    <button ng-click="<%= ng_service(:alertMe, user.bind(:name)) %>">Alert me!</button>
   <% end %>
 </div>
+```
+
+`ng_wrap` is also capable of accepting multiple parameters.
+
+```erb
+  <%= ng_wrap('user', 'user.name') do |user, name| %>
+    {{ <%= user.bind %> }}
+    <button ng-click="<%= ng_service(:alertMe, name.bind) %>">Alert me!</button>
+  <% end %>
 ```
 
 ### I want more!

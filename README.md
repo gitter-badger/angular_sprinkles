@@ -42,9 +42,10 @@ Include and `angular_sprinkles` into your `application.js`.
 
 - [Two-way binding](#two-way-binding)
 - [Directives](#directives)
-- [Controllers and Isolate Scopes](#controllers-and-isolate-scopes)
+- [Controllers and isolate scopes](#controllers-and-isolate-scopes)
 - [Inlining function calls](#inlining-function-calls)
 - [Form helpers](#form-helpers)
+- [Forcing ruby wrappers for variable names](#forcing-ruby-wrappers-for-variable-names)
 
 ### Two-way binding
 
@@ -104,7 +105,7 @@ sprinkles.directive('someDirective', function () {
 <% end %>
 ```
 
-### Controllers and Isolate Scopes
+### Controllers and isolate scopes
 
 If you would rather skip the directive and just create a controller, there is the `ctrl` helper.
 
@@ -147,7 +148,7 @@ sprinkles.service('alertMe', function () {
 });
 </script>
 
-<button ng-click="<%= ng_service(:alert_me, "world") %>">Click me!</button>
+<button ng-click="<%= ng_service(:alertMe, "world") %>">Click me!</button>
 ```
 
 ### Form helpers
@@ -181,6 +182,19 @@ sprinkles.service('userFormHandler', function () {
 <%= ng_form_for @user, :user_form_handler do |f| %>
   <%= f.bind_text_field :name %>
 <% end %>
+```
+
+### Forcing ruby wrappers for variable names
+
+It is sometimes useful to be able to wrap a variable name into a ruby helper. The following example illustrates how it may be useful to
+wrap the result of a `ng-repeat` so that it can be combined with the other helpers in this library.
+
+```erb
+<div ng-repeat="user in <%= @users.bind %>">
+  <%= ng_wrap('user') do |user| %>
+    <button ng-click="<%= ng_service(:alertMe, user.bind) %>">Alert me!</button>
+  <% end %>
+</div>
 ```
 
 ### I want more!

@@ -26,9 +26,10 @@ feature "javascript_bindings", js: true do
     expect(find("#bind-div")).to have_content(new_name)
 
     # directive controller results
-    expect(find("#directive-ctrl-bind")).to have_content("bigHelloWorldCtrlAttribute")
-    expect(find("#directive-ctrl-call")).to have_content('func result')
+    expect(find("#directive-ctrl-bind-div")).to have_content("bigHelloWorldCtrlAttribute")
+    expect(find("#directive-ctrl-call-div")).to have_content('func result')
     expect(find("#ctrl-div")).to have_content(42)
     expect(find("#isolate-div")).to have_content(42)
+    expect(find("#wrap-div")).to have_content(11)
   end
 end

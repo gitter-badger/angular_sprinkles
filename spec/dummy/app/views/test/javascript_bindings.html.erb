@@ -3,8 +3,8 @@
 <div id="bind-div" ng-bind="<%= ng_bind(:hello, :world) %>"></div>
 
 <%= ng_directive(:bigHelloWorld, html: { id: "directive-div" }) do |ctrl| %>
-  <div id="directive-ctrl-bind" ng-bind="<%= ctrl.bind(:attribute) %>"></div>
-  <div id="directive-ctrl-call" ng-bind="<%= ctrl.call(:func, 'func result') %>"></div>
+  <div id="directive-ctrl-bind-div" ng-bind="<%= ctrl.bind(:attribute) %>"></div>
+  <div id="directive-ctrl-call-div" ng-bind="<%= ctrl.call(:func, 'func result') %>"></div>
 
   <%= ng_directive(:nested_directive, name: @model.bind(:name), html: { tag: 'h1' }) %>
 <% end %>
@@ -18,12 +18,20 @@
   <div id="isolate-div" ng-bind="<%= ctrl.bind(:someValue) %>"></div>
 <% end %>
 
-<div id="model-bind">
+<div id="model-bind-div">
   <label for="input">Input</label>
   <input id="input" name="input" type="text" ng-model="<%= @model.bind(:name) %>" />
 </div>
 
-<div id="bind-bind">
+<%= ng_isolate do %>
+  <%= ng_wrap('a', 'b') do |a, b| %>
+    {{ <%= a.bind %> = 5 }}
+    {{ <%= b.bind %> = 6 }}
+    <div id="wrap-div">{{ <%= a.bind %> + <%= b.bind %> }}</div>
+  <% end %>
+<% end %>
+
+<div id="bind-bind-div">
   <label for="bind">Bind</label>
   <input id="bind" name="bind" type="text" ng-model="<%= ng_bind(:hello, :world) %>" />
 </div>

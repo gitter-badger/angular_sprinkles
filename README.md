@@ -119,7 +119,7 @@ sprinkles.controller('someCtrl', function () {
 </script>
 
 <%= ng_controller(:someCtrl) do |some_ctrl| %>
-  <button ng-click="<%= some_ctrl.call('Gabe') %>">CLICK ME!</button>
+  <button ng-click="<%= some_ctrl.call(:alertMe, 'Gabe') %>">CLICK ME!</button>
 <% end %>
 ```
 

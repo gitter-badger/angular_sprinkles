@@ -4,6 +4,12 @@
 [![Circle CI](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles.png?style=badge)](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles)
 [![Coverage Status](https://coveralls.io/repos/BrewhouseTeam/angular_sprinkles/badge.png?branch=master)](https://coveralls.io/r/BrewhouseTeam/angular_sprinkles?branch=master)
 
+## !!!!!!!!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!!!!!!
+
+__This library is deprecated and is no longer being maintained. Use at your own risk.__
+
+## Introduction
+
 Angular Sprinkles is a gem for writing Rails-flavored AngularJS.
 
 - __No frontend setup required:__ By just requiring it in your project, Sprinkles dynamically generates an Angular application around your Rails templates. It's never been easier to start developing with Angular and Rails.

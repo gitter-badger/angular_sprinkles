@@ -1,5 +1,7 @@
 # Angular Sprinkles
 
+[![Join the chat at https://gitter.im/BrewhouseTeam/angular_sprinkles](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BrewhouseTeam/angular_sprinkles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Gem Version](https://badge.fury.io/rb/angular_sprinkles.svg)](http://badge.fury.io/rb/angular_sprinkles)
 [![Circle CI](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles.png?style=badge)](https://circleci.com/gh/BrewhouseTeam/angular_sprinkles)
 [![Coverage Status](https://coveralls.io/repos/BrewhouseTeam/angular_sprinkles/badge.png?branch=master)](https://coveralls.io/r/BrewhouseTeam/angular_sprinkles?branch=master)
